@@ -18,8 +18,7 @@
             <ImageView
                 android:id="@+id/loginLogoImg"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/icone_simple"/>
+                android:layout_height="100dp"/>
         </LinearLayout>
 
     </LinearLayout>

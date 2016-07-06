@@ -33,7 +33,7 @@ public class LoginFragment extends Fragment {
         icon = (ImageView) rootview.findViewById(R.id.loginLogoImg);
         loginOpenRegisterBtn = (FloatingActionButton) rootview.findViewById(R.id.loginOpenRegisterBtn);
         icon.setImageBitmap(
-                decodeSampledBitmapFromResource(getResources(), R.drawable.logo, 300, 300));
+                decodeSampledBitmapFromResource(getResources(), R.drawable.icone_simple, 300, 300));
 
         loginOpenRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
