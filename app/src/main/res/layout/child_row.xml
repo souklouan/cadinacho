@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="210dp"
+    android:background="@color/white"
+    android:layout_marginRight="@dimen/margin_normal"
+    android:layout_marginTop="@dimen/margin_normal">
+
+<de.hdodenhof.circleimageview.CircleImageView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/margin_normal"
+    android:id="@+id/profile_image"
+    android:layout_width="96dp"
+    android:layout_height="96dp"
+    app:civ_border_width="1dp"
+    android:src="@drawable/person_green_24dp"
+    app:civ_border_color="@color/background"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_below="@+id/profile_image"
+        android:id="@+id/linearLayout"
+        android:layout_marginTop="@dimen/margin_normal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ARCADIUS"
+            android:textSize="@dimen/text_normal_size"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cs.St Félicité"
+            android:textSize="@dimen/text_small_size"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:background="@color/colorPrimary"
+        android:text="Explorer"
+        android:textSize="@dimen/text_small_size"
+        android:textColor="@color/white"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignRight="@+id/profile_image"
+        android:layout_alignEnd="@+id/profile_image" />
+
+
+</RelativeLayout>

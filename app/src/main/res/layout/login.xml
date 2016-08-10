@@ -1,93 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <LinearLayout
+    android:layout_height="match_parent">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:id="@+id/loginBannerLayout"
-        android:background="@color/colorPrimary_light">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/loginLogoImg"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-        </LinearLayout>
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerInside"
+                android:focusable="true"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_presentation"
+                android:layout_below="@+id/loginLogoImg"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-25dp"/>
 
-    <LinearLayout
-        android:layout_below="@+id/loginBannerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="70dp"
-        android:gravity="center_horizontal">
+            <LinearLayout
+                android:id="@+id/linearNumber"
+                android:layout_below="@+id/loginLogoImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="50dp"
+                android:gravity="center_horizontal">
 
-        <android.support.design.widget.TextInputEditText
-            android:layout_height="wrap_content"
-            android:layout_width="@dimen/input_size"
-            android:drawableLeft="@drawable/icone4"
-            android:drawableStart="@drawable/icone4"
-            android:hint="@string/loginNumber"
-            style="@style/EditText"
-            android:layout_marginBottom="10dp"/>
+                <android.support.design.widget.TextInputEditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/input_size"
+                    android:drawableLeft="@drawable/icone4"
+                    android:drawableStart="@drawable/icone4"
+                    android:hint="@string/loginNumber"
+                    style="@style/EditText"
+                    android:layout_marginBottom="10dp"/>
 
-        <android.support.design.widget.TextInputEditText
-            android:layout_height="wrap_content"
-            android:layout_width="@dimen/input_size"
-            android:drawableLeft="@drawable/icone2"
-            android:drawableStart="@drawable/icone2"
-            android:hint="@string/loginPwd"
-            style="@style/EditText" />
+                <Button
+                    android:text="@string/connectBtn"
+                    style="@style/BtnBackgroung"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="12dp"/>
+            </LinearLayout>
 
-        <Button
-            android:text="@string/connectBtn"
-            style="@style/BtnBackgroung"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="12dp"/>
+            <LinearLayout
+                android:id="@+id/linearConnectWith"
+                android:layout_below="@+id/linearNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.5"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/divider"
+                    android:layout_marginRight="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Se connecter avec"/>
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/divider"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small_size"
-            android:text="@string/loginPwdForget"/>
+            <LinearLayout
+                android:layout_below="@+id/linearConnectWith"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp">
 
+                <Button
+                    android:drawablePadding="-50dp"
+                    android:drawableLeft="@drawable/facebook_48"
+                    style="@style/BtnBackgroung"
+                    android:text="Facebook"
+                    android:textColor="@color/white"
+                    android:background="#3b5998"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"/>
 
+                <Button
+                    android:drawablePadding="-72dp"
+                    android:drawableLeft="@drawable/google_plus_48"
+                    android:text="Google"
+                    style="@style/BtnBackgroung"
+                    android:textColor="@color/white"
+                    android:background="#E7442A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="12dp"/>
 
+            </LinearLayout>
 
-    </LinearLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/loginOpenRegisterBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/loginBannerLayout"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="-43dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
-        app:elevation="3dp"
-        android:src="@drawable/ic_add_white_24dp"/>
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/use_email"
-        android:textColor="@color/colorSecondary_text"
-        android:id="@+id/checkBox"
-        android:layout_below="@+id/loginBannerLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

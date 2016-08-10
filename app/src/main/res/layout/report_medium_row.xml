@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/padding_normal"
+    android:paddingRight="@dimen/padding_normal">
+
+    <LinearLayout
+        android:id="@+id/linearReportMLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mathématique"
+            android:textSize="@dimen/text_normal_size"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lundi 12 mai"
+            android:textSize="@dimen/text_small_size"
+            android:textStyle="italic"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15"
+        android:layout_toRightOf="@+id/linearReportMLeft"
+        android:layout_marginLeft="100dp"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/text_normal_size"/>
+
+</RelativeLayout>
