@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_normal"
+    tool:context=".activity.MainChildActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearMainReportTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_normal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="INFORMATION"
+                    android:textColor="@color/colorPrimary_text"
+                    android:textSize="@dimen/text_normal_size"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:minHeight="60dp"
+                    android:gravity="center_vertical"
+                    android:paddingRight="@dimen/padding_normal"
+                    android:paddingLeft="@dimen/padding_normal"
+                    android:text="La serie de devoir du 2ème trimestre aura lieu du 22/05/2016 au 27/05/2016"
+                    android:background="@color/background"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorSecondary_text"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_below="@+id/linearMainReportTop"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cette semaine :"
+                    android:textSize="@dimen/text_normal_size"
+                    android:textColor="@color/colorPrimary_text"/>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"/>
+                <Button
+                    android:text="Voir plus"
+                    style="@style/BtnBackgroungNormal"
+                    android:layout_marginTop="25dp"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
