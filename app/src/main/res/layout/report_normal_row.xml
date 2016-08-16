@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:paddingLeft="@dimen/padding_normal"
-    android:paddingRight="@dimen/padding_normal">
+    android:paddingRight="@dimen/padding_normal"
+    android:weightSum="1">
 
     <LinearLayout
         android:id="@+id/linearReportMLeft"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="0.8">
         <TextView
+            android:id="@+id/txtReportMediumSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mathématique"
+            android:text="Matière"
             android:textSize="@dimen/text_normal_size"/>
         <TextView
             android:layout_width="wrap_content"
@@ -24,12 +28,13 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
         android:layout_height="wrap_content"
         android:text="15"
-        android:layout_toRightOf="@+id/linearReportMLeft"
-        android:layout_marginLeft="100dp"
-        android:layout_centerVertical="true"
-        android:textSize="@dimen/text_normal_size"/>
+        android:layout_marginLeft="20dp"
+        android:textSize="@dimen/text_normal_size"
+        android:gravity="left"
+        android:layout_gravity="center_vertical"/>
 
-</RelativeLayout>
+</LinearLayout>
