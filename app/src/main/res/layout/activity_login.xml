@@ -49,10 +49,8 @@
             <Button
                 android:id="@+id/connectSmsBtn"
                 android:text="@string/connectBtn"
-                style="@style/BtnBackgroung"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                style="@style/BtnBackgroungBig"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="12dp"/>
          </LinearLayout>
 
@@ -64,7 +62,7 @@
              android:orientation="horizontal"
              android:weightSum="2.5"
              android:gravity="center"
-             android:layout_marginTop="10dp">
+             android:layout_marginTop="20dp">
             <View
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -89,25 +87,15 @@
              android:layout_height="wrap_content"
              android:orientation="vertical"
              android:gravity="center_horizontal"
-             android:layout_marginTop="20dp">
-
-             <com.facebook.login.widget.LoginButton
-                 android:id="@+id/connectFbkBtn"
-                 android:layout_height="@dimen/btnNormal_height"
-                 android:layout_width="@dimen/btnNormal_width"
-                 android:layout_marginTop="10dp"
-                 />
-
+             android:layout_marginTop="40dp">
 
             <Button
                 android:drawablePadding="-72dp"
                 android:drawableLeft="@drawable/google_plus_48"
                 android:text="Google"
-                style="@style/BtnBackgroung"
+                style="@style/BtnBackgroungBig"
                 android:textColor="@color/white"
                 android:background="#E7442A"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="12dp"/>
 

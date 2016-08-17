@@ -5,7 +5,7 @@ import android.app.Application;
 import android.os.Build;
 import android.os.StrictMode;
 
-import com.facebook.FacebookSdk;
+//import com.facebook.FacebookSdk;
 import com.facebook.accountkit.AccountKit;
 
 import butterknife.ButterKnife;
@@ -18,11 +18,14 @@ public class Souklou extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        ApplicationContext.getInstance().initialize(this);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             enableStrictMode();
         }
         AccountKit.initialize(getApplicationContext());
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        //FacebookSdk.sdkInitialize(getApplicationContext());
     }
 
     public void enableStrictMode() {

@@ -43,9 +43,7 @@
             android:gravity="end|center_vertical"
             android:layout_weight="0.1">
             <Button
-                android:layout_width="130dp"
-                android:layout_height="35dp"
-                style="@style/BtnBackgroung"
+                style="@style/BtnBackgroungNormal"
                 android:text="Ajouter"
                 android:layout_marginRight="20dp"/>
         </LinearLayout>
@@ -53,11 +51,12 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/childrenRvw"
+        android:id="@+id/rcwChildren"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearAddChild"
-        android:padding="@dimen/padding_normal">
+        android:padding="@dimen/padding_normal"
+        android:layout_marginRight="-25dp">
 
     </android.support.v7.widget.RecyclerView>
 

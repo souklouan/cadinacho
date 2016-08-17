@@ -14,12 +14,13 @@
         android:orientation="vertical"
         android:layout_weight="0.8">
         <TextView
-            android:id="@+id/txtReportMediumSubject"
+            android:id="@+id/txtReportNormalSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Matière"
             android:textSize="@dimen/text_normal_size"/>
         <TextView
+            android:id="@+id/txtReportNormalDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lundi 12 mai"

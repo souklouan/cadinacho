@@ -47,9 +47,7 @@
 
                 <Button
                     android:text="@string/connectBtn"
-                    style="@style/BtnBackgroung"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/BtnBackgroungBig"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="12dp"/>
             </LinearLayout>
@@ -92,23 +90,19 @@
                 <Button
                     android:drawablePadding="-50dp"
                     android:drawableLeft="@drawable/facebook_48"
-                    style="@style/BtnBackgroung"
+                    style="@style/BtnBackgroungBig"
                     android:text="Facebook"
                     android:textColor="@color/white"
                     android:background="#3b5998"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"/>
 
                 <Button
                     android:drawablePadding="-72dp"
                     android:drawableLeft="@drawable/google_plus_48"
                     android:text="Google"
-                    style="@style/BtnBackgroung"
+                    style="@style/BtnBackgroungBig"
                     android:textColor="@color/white"
                     android:background="#E7442A"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="12dp"/>
 

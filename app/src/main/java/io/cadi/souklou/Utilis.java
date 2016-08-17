@@ -1,13 +1,20 @@
 package io.cadi.souklou;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 /**
  * Created by arcadius on 08/08/16.
  */
 public class Utilis {
+
+    private static final String SHARE_PREFERENCE_NAME = "cadi.io";
+    private static Context context = ApplicationContext.getInstance().getApplicationContext();
 
     private static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
@@ -46,5 +53,21 @@ public class Utilis {
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    public static void setSharePreference(String name, String value) {
+        SharedPreferences preferences = context.getSharedPreferences(SHARE_PREFERENCE_NAME, context.MODE_PRIVATE);
+        if (!preferences.contains(name)){
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(name,value);
+            editor.apply();
+        } else
+            Log.e("SharePreference", name+" already exist");
+    }
+
+    public static  String getSharePreference(String name) {
+        SharedPreferences preferences = context.getSharedPreferences(SHARE_PREFERENCE_NAME,context.MODE_PRIVATE);
+        String n = preferences.getString(name, "");
+        return  (!n.equalsIgnoreCase("")) ? null : n;
     }
 }
