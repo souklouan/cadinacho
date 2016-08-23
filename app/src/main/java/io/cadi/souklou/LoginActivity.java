@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.cadi.souklou.activity.ChildrenActivity;
 import io.cadi.souklou.facebookAuth.SmsAuth;
+import io.cadi.souklou.utilitaire.Utilis;
 
 
 public class LoginActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package io.cadi.souklou;
+package io.cadi.souklou.utilitaire;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
+import io.cadi.souklou.ApplicationContext;
 
 /**
  * Created by arcadius on 08/08/16.

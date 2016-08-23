@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-  <android.support.v7.widget.RecyclerView
-      android:id="@+id/recycleview"
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"/>
+      android:layout_height="?attr/actionBarSize"
+      android:background="@color/colorPrimary"
+      app:title="Calendrier Scolaire"
+      app:titleTextColor="@color/white"/>
+
+  <android.support.design.widget.TabLayout
+      android:id="@+id/tabCalendar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/colorPrimary"
+      app:tabTextColor="#ffffff"
+      app:tabSelectedTextColor="#fff"
+      app:tabIndicatorHeight="3dp"
+      app:tabIndicatorColor="@android:color/white"
+      app:tabMode="fixed"
+      app:tabGravity="fill"
+      />
+
+
+  <android.support.v4.view.ViewPager
+      android:id="@+id/vwpCalendar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      />
+
+
 
 </LinearLayout>

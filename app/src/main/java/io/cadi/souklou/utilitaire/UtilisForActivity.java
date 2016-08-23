@@ -1,4 +1,4 @@
-package io.cadi.souklou;
+package io.cadi.souklou.utilitaire;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;

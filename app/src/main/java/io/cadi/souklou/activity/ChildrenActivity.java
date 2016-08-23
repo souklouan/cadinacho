@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 
 import io.cadi.souklou.R;
-import io.cadi.souklou.Utilis;
 import io.cadi.souklou.adapter.ChildrenAdapter;
 
 public class ChildrenActivity extends AppCompatActivity {
@@ -16,7 +15,7 @@ public class ChildrenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_children);
-        initViews();
+        initListViews();
     }
 
 
@@ -26,7 +25,7 @@ public class ChildrenActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void initViews(){
+    private void initListViews(){
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rcwChildren);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),2);

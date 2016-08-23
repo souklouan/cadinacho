@@ -15,7 +15,6 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.cadi.souklou.R;
-import io.cadi.souklou.Utilis;
 import io.cadi.souklou.adapter.PreviewChildAdapter;
 
 /**
@@ -65,6 +64,9 @@ public class PreviewChildActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_report) {
             startActivity(new Intent(PreviewChildActivity.this, ReportActivity.class));
+        }
+        if (id == R.id.action_calendar) {
+            startActivity(new Intent(PreviewChildActivity.this, CalendarActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

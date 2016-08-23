@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "934490969022",
-    "firebase_url": "https://souklou-7e1dd.firebaseio.com",
-    "project_id": "souklou-7e1dd",
-    "storage_bucket": "souklou-7e1dd.appspot.com"
+    "project_number": "644589908472",
+    "firebase_url": "https://souklou-15ea7.firebaseio.com",
+    "project_id": "souklou-15ea7",
+    "storage_bucket": "souklou-15ea7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:934490969022:android:b63dc279c5c47f09",
+        "mobilesdk_app_id": "1:644589908472:android:b63dc279c5c47f09",
         "android_client_info": {
           "package_name": "com.souklou.android"
         }
       },
       "oauth_client": [
         {
-          "client_id": "934490969022-d8lolgmeq65rmlqb5f22hamtdmlgu5m5.apps.googleusercontent.com",
+          "client_id": "644589908472-ihggegra13ronbhuvijkiui5qhnnsnua.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB1BCybvbIrrwEOUxBoLwbRnpTicQz7Mm4"
+          "current_key": "AIzaSyD1e68MKvhlmzTJcKuUW9SURECzEw5CdYc"
         }
       ],
       "services": {
