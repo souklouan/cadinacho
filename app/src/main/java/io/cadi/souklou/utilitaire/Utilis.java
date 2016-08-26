@@ -8,6 +8,10 @@ import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import io.cadi.souklou.ApplicationConstant;
 import io.cadi.souklou.ApplicationContext;
 
 /**
@@ -15,8 +19,8 @@ import io.cadi.souklou.ApplicationContext;
  */
 public class Utilis {
 
-    private static final String SHARE_PREFERENCE_NAME = "cadi.io";
     private static Context context = ApplicationContext.getInstance().getApplicationContext();
+
 
     private static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
@@ -56,9 +60,9 @@ public class Utilis {
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
     }
-
+    //resize out of memory image
     public static void setSharePreference(String name, String value) {
-        SharedPreferences preferences = context.getSharedPreferences(SHARE_PREFERENCE_NAME, context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(ApplicationConstant.SHARE_PREFERENCE_NAME, context.MODE_PRIVATE);
         if (!preferences.contains(name)){
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(name,value);
@@ -68,8 +72,14 @@ public class Utilis {
     }
 
     public static  String getSharePreference(String name) {
-        SharedPreferences preferences = context.getSharedPreferences(SHARE_PREFERENCE_NAME,context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(ApplicationConstant.SHARE_PREFERENCE_NAME,context.MODE_PRIVATE);
         String n = preferences.getString(name, "");
         return  (!n.equalsIgnoreCase("")) ? null : n;
+    }
+
+    public static String getCurrentTime() {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(c.getTime());
     }
 }

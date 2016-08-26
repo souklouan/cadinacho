@@ -5,7 +5,7 @@ package io.cadi.souklou.models;
  */
 public class Children {
 
-    String id, firstName, lastName, school, classroom, currentYear, idParent, birthDay;
+    String key, firstName, lastName, school, classroom, created, idParent, birthDay;
 
     public String getBirthDay() {
         return birthDay;
@@ -23,20 +23,20 @@ public class Children {
         this.idParent = idParent;
     }
 
-    public String getCurrentYear() {
-        return currentYear;
+    public String getCreated() {
+        return created;
     }
 
-    public void setCurrentYear(String currentYear) {
-        this.currentYear = currentYear;
+    public void setCreated(String created) {
+        this.created = created;
     }
 
-    public String getId() {
-        return id;
+    public String getKey() {
+        return key;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setKey(String id) {
+        this.key = id;
     }
 
     public String getFirstName() {

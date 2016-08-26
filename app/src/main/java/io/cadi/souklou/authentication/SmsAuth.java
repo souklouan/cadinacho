@@ -1,4 +1,4 @@
-package io.cadi.souklou.facebookAuth;
+package io.cadi.souklou.authentication;
 
 import android.content.Context;
 import android.content.Intent;

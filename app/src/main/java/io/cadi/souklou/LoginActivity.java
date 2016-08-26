@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.cadi.souklou.activity.ChildrenActivity;
-import io.cadi.souklou.facebookAuth.SmsAuth;
+import io.cadi.souklou.authentication.SmsAuth;
 import io.cadi.souklou.utilitaire.Utilis;
 
 

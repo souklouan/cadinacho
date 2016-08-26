@@ -15,8 +15,12 @@ import java.sql.Timestamp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.cadi.souklou.ApplicationConstant;
 import io.cadi.souklou.R;
+import io.cadi.souklou.database.ChildrenDb;
+import io.cadi.souklou.database.ListenerDb;
 import io.cadi.souklou.models.Children;
+import io.cadi.souklou.utilitaire.Utilis;
 
 /**
  * Created by arcadius on 20/08/16.
@@ -24,18 +28,18 @@ import io.cadi.souklou.models.Children;
 public class RegisteredActivity extends AppCompatActivity {
 
     //TODO change all name later
-    @BindView(R.id.ed1)
-    EditText ed1;
-    @BindView(R.id.ed2)
-    EditText ed2;
-    @BindView(R.id.ed3)
-    EditText ed3;
-    @BindView(R.id.ed4)
-    EditText ed4;
+    @BindView(R.id.txtFirstName)
+    EditText txtFirstName;
+    @BindView(R.id.txtLastName)
+    EditText txtLastName;
+    @BindView(R.id.txtSchool)
+    EditText txtSchool;
+    @BindView(R.id.txtClassroom)
+    EditText txtClassroom;
     @BindView(R.id.btnRegisterChild)
     Button btnRegisterChild;
 
-    private DatabaseReference mDatabase;
+    private ChildrenDb childrenDb;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,67 +47,41 @@ public class RegisteredActivity extends AppCompatActivity {
         setContentView(R.layout.register_child);
         ButterKnife.bind(this);
 
-         mDatabase = FirebaseDatabase.getInstance().getReference("souklou-15ea7");
+        childrenDb = new ChildrenDb();
 
         btnRegisterChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Children children = new Children();
-                children.setId(getTimeStamp());
-                children.setFirstName(ed1.getText().toString());
-                children.setLastName(ed2.getText().toString());
-                children.setSchool(ed3.getText().toString());
-                children.setClassroom(ed4.getText().toString());
-
-                writeNewChildren(children);
+                addNewChildren();
             }
         });
 
 
     }
 
-    private void sh(Children children){
-        //mDatabase.child("posts").push().;
+    private void addNewChildren() {
+        Children children = getChildrenFromInput();
+        childrenDb.addNewChildren(children, new ListenerDb() {
+            @Override
+            public void onSuccess(Object o) {
+                Children c = (Children) o;
+                Log.e("voir back", c.getFirstName());
+            }
 
-
+            @Override
+            public void onFailed(Object o) {
+                Log.e("faillllll", "echeccccc");
+            }
+        });
     }
 
-    private void writeNewChildren(Children children) {
-
-        //mDatabase.child("users").child("fdsffdf").setValue("arcadius");
-
-        //String key = mDatabase.child("posts").push().getKey();
-        DatabaseReference post = mDatabase.child("parent").push();
-        DatabaseReference post1 = mDatabase.child("children").push();
-        DatabaseReference post2 = mDatabase.child("mark").push();
-        DatabaseReference post3 = mDatabase.child("course").push();
-        DatabaseReference post4 = mDatabase.child("metaCalendar").push();
-
-        post.setValue(children);
-        post1.setValue(children);
-        post2.setValue(children);
-        post3.setValue(children);
-        post4.setValue(children);
-
-
-/*
-        Map<String, Object> postValues = children.toMap();
-
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/posts/" + key, postValues);
-        childUpdates.put("/user-posts/" + children.getId() + "/" + key, postValues);
-
-        mDatabase.updateChildren(childUpdates);*/
-
-        Log.e("write", "whrite "+getTimeStamp());
-        //mDatabase.push();
-        //mDatabase.child("users").child(userId).setValue(user);
-    }
-
-    private String getTimeStamp() {
-        int time = (int) (System.currentTimeMillis());
-        Timestamp tsTemp = new Timestamp(time);
-        String ts =  tsTemp.toString();
-        return ts;
+    private Children getChildrenFromInput() {
+        Children children = new Children();
+        children.setFirstName(txtFirstName.getText().toString());
+        children.setLastName(txtLastName.getText().toString());
+        children.setSchool(txtSchool.getText().toString());
+        children.setClassroom(txtClassroom.getText().toString());
+        children.setCreated(Utilis.getCurrentTime());
+        return children;
     }
 }
