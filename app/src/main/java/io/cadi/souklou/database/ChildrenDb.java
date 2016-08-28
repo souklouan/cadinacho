@@ -1,10 +1,7 @@
 package io.cadi.souklou.database;
 
-import android.util.Log;
-
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import io.cadi.souklou.ApplicationConstant;
 import io.cadi.souklou.models.Children;
@@ -36,8 +33,8 @@ public class ChildrenDb {
      * @param callback call when in error case
      */
     public void addNewChildren(final Children children, final ListenerDb callback) {
-       DatabaseReference child = refParent.child(generateNewKey());
-       child.child(DbConstant.TABLE_CHILDREN).setValue(children, new DatabaseReference.CompletionListener() {
+       DatabaseReference newChild = refParent.child(generateNewKey());
+       newChild.child(DbConstant.TABLE_CHILDREN).setValue(children, new DatabaseReference.CompletionListener() {
            @Override
            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                if (databaseError != null)
