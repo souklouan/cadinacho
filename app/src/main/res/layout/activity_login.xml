@@ -89,15 +89,14 @@
              android:gravity="center_horizontal"
              android:layout_marginTop="40dp">
 
-            <Button
-                android:drawablePadding="-72dp"
-                android:drawableLeft="@drawable/google_plus_48"
-                android:text="Google"
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/btnLoginGoogle"
                 style="@style/BtnBackgroungBig"
                 android:textColor="@color/white"
                 android:background="#E7442A"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="12dp"/>
+
 
          </LinearLayout>
 

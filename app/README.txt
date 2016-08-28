@@ -5,7 +5,7 @@
 ***
 ***************************************************************
 
-* Authentification google (LoginActivity)
+* Authentification google (LoginActivity) EN COURS
 * Faire fonctionner entierement la connexion
 * Terminer le module d'ajout d'un enfant (ChildrenActivity et RegisteredChildActivity)
 * Enregistrer l'image de l'enfant avec le module "STOCKAGE" de firebase (RegisteredChildActivity)
