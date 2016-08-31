@@ -7,11 +7,11 @@
 
 * Authentification google (LoginActivity) EN COURS
 * Faire fonctionner entierement la connexion
-* Terminer le module d'ajout d'un enfant (ChildrenActivity et RegisteredChildActivity)
+* Terminer le module d'ajout d'un enfant (ChildrenActivity et RegisteredChildActivity) EN COURS -- Narech
 * Enregistrer l'image de l'enfant avec le module "STOCKAGE" de firebase (RegisteredChildActivity)
-* Changer le background des button "BLEU" au click (main_btn_backgroung.xml)
-* Appliquer le background sur les NOTES (PreviewChildActivity et ReportMarkActivity)
+* Changer le background des button "BLEU" au click (main_btn_backgroung.xml)EN COURS -- Narech
+* Appliquer le background sur les NOTES (PreviewChildActivity et ReportMarkActivity)EN COURS -- Narech
 * Enlever la fleche (haut ou bas) sur le bloc des NOTES (PreviewChildActivity)
 * Implementer le calendrier (CalendarActivity)
 * Implementer l'appel de l'ecole (PreviewChildActivity)
-* Implementer le drawer et prevoir egament la pub dans le drawer
+* Implementer le drawer et prevoir egament la pub dans le drawer EN COURS -- Narech
