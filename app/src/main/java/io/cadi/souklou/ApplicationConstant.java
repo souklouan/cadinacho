@@ -11,5 +11,5 @@ public class ApplicationConstant {
     //all constant is static and write in uppercase
     //public static String
     public static final String SHARE_PREFERENCE_NAME = "cadi.io";
-    public static final DatabaseReference FIREBASE_DB = FirebaseDatabase.getInstance().getReference("souklou-15ea7");
+    public static final DatabaseReference FIREBASE_DB = FirebaseDatabase.getInstance().getReference("souklouDb");
 }

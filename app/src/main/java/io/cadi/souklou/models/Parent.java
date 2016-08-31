@@ -5,7 +5,7 @@ package io.cadi.souklou.models;
  */
 public class Parent {
 
-    private String id, firstName, lastName, phone, area;
+    private String id, firstName, lastName, phone, area, created;
 
     public String getId() {
         return id;
@@ -45,5 +45,13 @@ public class Parent {
 
     public void setArea(String area) {
         this.area = area;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
     }
 }

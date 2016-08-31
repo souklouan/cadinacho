@@ -8,14 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.sql.Timestamp;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.cadi.souklou.ApplicationConstant;
 import io.cadi.souklou.R;
 import io.cadi.souklou.database.ChildrenDb;
 import io.cadi.souklou.database.ListenerDb;
@@ -25,7 +19,7 @@ import io.cadi.souklou.utilitaire.Utilis;
 /**
  * Created by arcadius on 20/08/16.
  */
-public class RegisteredActivity extends AppCompatActivity {
+public class RegisteredChildActivity extends AppCompatActivity {
 
     //TODO change all name later
     @BindView(R.id.txtFirstName)
@@ -44,7 +38,7 @@ public class RegisteredActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_child);
+        setContentView(R.layout.activity_register_child);
         ButterKnife.bind(this);
 
         childrenDb = new ChildrenDb();
@@ -66,6 +60,7 @@ public class RegisteredActivity extends AppCompatActivity {
             public void onSuccess(Object o) {
                 Children c = (Children) o;
                 Log.e("voir back", c.getFirstName());
+                finish();//end the activity
             }
 
             @Override

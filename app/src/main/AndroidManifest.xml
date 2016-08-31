@@ -32,7 +32,11 @@
             android:name=".LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.ChildrenActivity"/>
 
@@ -42,15 +46,11 @@
             android:label="Notes"/>
         <activity android:name=".activity.ReportActivity"
             android:label="Bullletin"/>
-        <activity android:name=".activity.RegisteredActivity"
+        <activity android:name=".activity.RegisteredChildActivity"
             android:label="Ajout"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            </activity>
+        </activity>
         <activity android:name=".activity.CalendarActivity"
             android:label="Calendrier Scolaire"
             android:theme="@style/AppTheme.NoActionBar"/>

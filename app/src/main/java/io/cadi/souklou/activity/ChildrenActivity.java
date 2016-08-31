@@ -1,7 +1,9 @@
 package io.cadi.souklou.activity;
 
+
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.cadi.souklou.R;
@@ -25,6 +28,7 @@ import io.cadi.souklou.models.Parent;
 import io.cadi.souklou.utilitaire.Utilis;
 
 public class ChildrenActivity extends AppCompatActivity {
+    @BindView(R.id.btnChildrenAdd) Button btnChildrenAdd;
 
     @BindView(R.id.btnAddChild)
     Button btnAddChild;
@@ -35,15 +39,10 @@ public class ChildrenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_children);
+        ButterKnife.bind(this);
         initListViews();
         ButterKnife.bind(this);
         parentDb = new ParentDb();
-        btnAddChild.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         LayoutInflater factory = LayoutInflater.from(this);
         final View alertDialogView = factory.inflate(R.layout.dialog_add_infos_parent, null);
 
@@ -70,6 +69,13 @@ public class ChildrenActivity extends AppCompatActivity {
             } });
         adb.show();
 
+
+        btnChildrenAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ChildrenActivity.this, RegisteredChildActivity.class));
+            }
+        });
     }
 
 
