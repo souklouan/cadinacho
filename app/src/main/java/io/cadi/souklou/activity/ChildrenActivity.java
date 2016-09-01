@@ -30,9 +30,6 @@ import io.cadi.souklou.utilitaire.Utilis;
 public class ChildrenActivity extends AppCompatActivity {
     @BindView(R.id.btnChildrenAdd) Button btnChildrenAdd;
 
-    @BindView(R.id.btnAddChild)
-    Button btnAddChild;
-
     private ParentDb parentDb;
 
     @Override
@@ -42,18 +39,16 @@ public class ChildrenActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initListViews();
         ButterKnife.bind(this);
+
+
         parentDb = new ParentDb();
         LayoutInflater factory = LayoutInflater.from(this);
         final View alertDialogView = factory.inflate(R.layout.dialog_add_infos_parent, null);
 
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
-
         adb.setView(alertDialogView);
-
         adb.setTitle("Complètez votre profil");
-
         adb.setIcon(R.drawable.icone1);
-
         adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 EditText firstName = (EditText)alertDialogView.findViewById(R.id.firstName);
@@ -96,6 +91,11 @@ public class ChildrenActivity extends AppCompatActivity {
 
     }
 
+
+    private void showParentDialog() {
+
+    }
+
     private void addNewParent(String firstName,String lastName,String area) {
         Parent parent = getParentFromInput(firstName,lastName,area);
         parentDb.addNewParent(parent, new ListenerDb() {
@@ -114,9 +114,9 @@ public class ChildrenActivity extends AppCompatActivity {
 
     private Parent getParentFromInput(String firstName,String lastName,String area) {
         Parent parent = new Parent();
-        parent.setFirstName(firstName.toString());
-        parent.setLastName(lastName.toString());
-        parent.setArea(area.toString());
+        parent.setFirstName(firstName);
+        parent.setLastName(lastName);
+        parent.setArea(area);
         parent.setCreated(Utilis.getCurrentTime());
         return parent;
     }

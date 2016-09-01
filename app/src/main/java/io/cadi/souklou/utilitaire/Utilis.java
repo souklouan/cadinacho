@@ -62,19 +62,19 @@ public class Utilis {
     }
     //resize out of memory image
     public static void setSharePreference(String name, String value) {
-        SharedPreferences preferences = context.getSharedPreferences(ApplicationConstant.SHARE_PREFERENCE_NAME, context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(ApplicationConstant.SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
         if (!preferences.contains(name)){
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(name,value);
-            editor.apply();
+            editor.putString(name, value);
+            editor.commit();
         } else
             Log.e("SharePreference", name+" already exist");
     }
 
     public static  String getSharePreference(String name) {
-        SharedPreferences preferences = context.getSharedPreferences(ApplicationConstant.SHARE_PREFERENCE_NAME,context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(ApplicationConstant.SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
         String n = preferences.getString(name, "");
-        return  (!n.equalsIgnoreCase("")) ? null : n;
+        return  (n.equals("")) ? null : n;
     }
 
     public static String getCurrentTime() {

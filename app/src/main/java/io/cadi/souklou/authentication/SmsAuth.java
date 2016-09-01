@@ -9,34 +9,34 @@ import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 
+import io.cadi.souklou.LoginActivity;
+
 /**
  * Created by arcadius on 08/08/16.
  */
 public class SmsAuth {
-    private static Context context;
+    private static LoginActivity context;
     private static Class className;
-    private static String phoneNumber;
     public static int APP_REQUEST_CODE = 42;
 
-    public SmsAuth(Context context, Class className, String phoneNumber) {
+    public SmsAuth(LoginActivity context, Class className) {
         SmsAuth.context = context;
         SmsAuth.className = className;
-        SmsAuth.phoneNumber = phoneNumber;
     }
 
-    public Intent onLoginPhone(final View view) {
+    public void signInSms(final View view, String number) {
         final Intent intent = new Intent(SmsAuth.context, SmsAuth.className);
         AccountKitConfiguration.AccountKitConfigurationBuilder configurationBuilder =
                 new AccountKitConfiguration.AccountKitConfigurationBuilder(
                         LoginType.PHONE,
                         AccountKitActivity.ResponseType.CODE);
-        PhoneNumber phoneNumber = new PhoneNumber("229",SmsAuth.phoneNumber);
+        PhoneNumber phoneNumber = new PhoneNumber("229",number);
         configurationBuilder.setInitialPhoneNumber(phoneNumber);
         configurationBuilder.setTitleType(AccountKitActivity.TitleType.APP_NAME);
         intent.putExtra(
                 AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
                 configurationBuilder.build());
 
-        return intent;
+        context.startActivityForResult(intent, SmsAuth.APP_REQUEST_CODE);
     }
 }
