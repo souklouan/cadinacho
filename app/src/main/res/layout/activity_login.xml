@@ -91,11 +91,11 @@
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/btnLoginGoogle"
-                style="@style/BtnBackgroungBig"
                 android:textColor="@color/white"
-                android:background="#E7442A"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="12dp"/>
+                android:layout_marginBottom="12dp"
+                android:layout_height="@dimen/btnBig_height"
+                android:layout_width="@dimen/btnBig_width" />
 
 
          </LinearLayout>

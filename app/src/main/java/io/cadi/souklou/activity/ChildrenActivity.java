@@ -18,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.cadi.souklou.R;
@@ -40,10 +43,12 @@ public class ChildrenActivity extends AppCompatActivity {
         initListViews();
         ButterKnife.bind(this);
 
-
         parentDb = new ParentDb();
         LayoutInflater factory = LayoutInflater.from(this);
         final View alertDialogView = factory.inflate(R.layout.dialog_add_infos_parent, null);
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("givenNamed",user.getDisplayName());
+        Log.e("FamNamed",Utilis.getSharePreference("FamilyName"));
 
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
         adb.setView(alertDialogView);
@@ -73,7 +78,13 @@ public class ChildrenActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("givenNamed",user.getDisplayName());
+        Log.e("FamNamed",Utilis.getSharePreference("FamilyName"));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

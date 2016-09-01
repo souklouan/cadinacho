@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.accountkit.AccountKitLoginResult;
@@ -65,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginLogoImg.setImageBitmap(
                 Utilis.decodeSampledBitmapFromResource(getResources(), R.drawable.icone_simple, 500, 500));
-        loginLogoImg.hasFocus();
+        loginLogoImg.requestFocus();
 
         connectSmsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                     smsAuth.signInSms(v, phoneNumber);
             }
         });
-
+        setGooglePlusButtonText(btnLoginGoogle,"Compte google");
         btnLoginGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Object object) {
                     GoogleSignInAccount account = (GoogleSignInAccount) object;//TODO
+                    Utilis.setSharePreference("FamilyName",account.getFamilyName());
                     authSucces(account.getDisplayName());
                 }
 
@@ -133,6 +135,22 @@ public class LoginActivity extends AppCompatActivity {
     private void authFailed() {
         Toast.makeText(LoginActivity.this, "Authentication falses.",
                 Toast.LENGTH_SHORT).show();
+    }
+
+    private void setGooglePlusButtonText(SignInButton signInButton,
+                                           String buttonText) {
+        for (int i = 0; i < signInButton.getChildCount(); i++) {
+            View v = signInButton.getChildAt(i);
+
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setTextSize(18);
+                tv.setBackgroundResource(R.drawable.google_btn_backgroung);
+                tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.google_plus_48, 0, 0, 0);
+                tv.setTextColor(getResources().getColor(R.color.white));
+                tv.setText(buttonText);
+            }
+        }
     }
 }
 
