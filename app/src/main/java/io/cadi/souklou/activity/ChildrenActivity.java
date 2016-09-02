@@ -64,8 +64,8 @@ public class ChildrenActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-        Log.e("givenNamed",user.getDisplayName());
+        //FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        //Log.e("givenNamed",user.getDisplayName());
         //Log.e("FamNamed",Utilis.getSharePreference("FamilyName"));
     }
 
@@ -93,27 +93,41 @@ public class ChildrenActivity extends AppCompatActivity {
         final EditText firstName = (EditText)alertDialogView.findViewById(R.id.firstName);
         final EditText lastName = (EditText)alertDialogView.findViewById(R.id.lastName);
         final EditText area = (EditText)alertDialogView.findViewById(R.id.area);
-        AlertDialog.Builder adb = new AlertDialog.Builder(this);
-        adb.setView(alertDialogView);
-        adb.setTitle("Complètez votre profil");
-        adb.setCancelable(false);
-        adb.setIcon(R.drawable.icone1);//TODO: change icone with the appropriate
+        final AlertDialog adb = new AlertDialog.Builder(this)
+                .setView(alertDialogView)
+                .setTitle("Complètez votre profil")
+                .setCancelable(false)
+                .setIcon(R.drawable.icone1)//TODO: change icone with the appropriate
+                .setPositiveButton("OK", null) //Set to null. We override the onclick
+                .setNegativeButton("Annuler", null)
+                .create();
         if (typeOfLogin == 1) {
             firstName.setText(Utilis.getSharePreference(AppConstant.PREF_PARENT_NAME));
             lastName.setText(Utilis.getSharePreference(AppConstant.PREF_FAMILY_NAME));
         }
-        adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                if(utilis.viewInputValidator(alertDialogView))
-                   saveParent();
-                else
-                    Snackbar.make(alertDialogView,"Veuillez remplir tous les champs",Snackbar.LENGTH_LONG).show();
-            } });
+        adb.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(final DialogInterface dialog) {
+                adb.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(utilis.viewInputValidator(alertDialogView)) {
+                            saveParent();
+                            dialog.dismiss();
+                        } else {
+                            Snackbar.make(alertDialogView,"Veuillez remplir tous les champs",Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                adb.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                       finish();
+                    }
+                });
 
-        adb.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            } });
+            }
+        });
         adb.show();
     }
 
