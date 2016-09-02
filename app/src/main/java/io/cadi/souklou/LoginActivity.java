@@ -4,6 +4,7 @@ package io.cadi.souklou;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -72,8 +73,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 phoneNumber = phoneNumberEdt.getText().toString();
-                if (phoneNumber.equals(""))
+                if (phoneNumber.equals("")) {
+                    Snackbar.make(v,"Entrer votre numero de téléphone",Snackbar.LENGTH_LONG).show();
                     phoneNumberEdt.hasFocus();
+                }
                 else
                     smsAuth.signInSms(v, phoneNumber);
             }
@@ -91,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(Utilis.getSharePreference("authInfo") != null) {
+        if(Utilis.getSharePreference(AppConstant.PREF_AUTH_INFO) != null) {
             startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
             finish();
         }
@@ -105,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getError() != null || loginResult.wasCancelled()) {
                     authFailed();
                 } else {
-                    authSucces(phoneNumber);
+                    authSucces(phoneNumber, 0);
                 }
             }
         if (requestCode == GoogleAuth.RC_SIGN_IN) {
@@ -114,8 +117,9 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Object object) {
                     GoogleSignInAccount account = (GoogleSignInAccount) object;//TODO
-                    Utilis.setSharePreference("FamilyName",account.getFamilyName());
-                    authSucces(account.getDisplayName());
+                    Utilis.setSharePreference(AppConstant.PREF_FAMILY_NAME,account.getFamilyName());
+                    Utilis.setSharePreference(AppConstant.PREF_PARENT_NAME,account.getGivenName());
+                    authSucces(account.getDisplayName(), 1);
                 }
 
                 @Override
@@ -126,8 +130,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void authSucces(String str) {
-        Utilis.setSharePreference("authInfo", str);
+    //type : 0 for sms and 1 for google
+    private void authSucces(String str, int type) {
+        Utilis.setSharePreference(AppConstant.PREF_AUTH_INFO, str);
+        Utilis.setSharePreference(AppConstant.PREF_AUTH_TYPE, String.valueOf(type));
         startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
         finish();
     }
@@ -141,7 +147,6 @@ public class LoginActivity extends AppCompatActivity {
                                            String buttonText) {
         for (int i = 0; i < signInButton.getChildCount(); i++) {
             View v = signInButton.getChildAt(i);
-
             if (v instanceof TextView) {
                 TextView tv = (TextView) v;
                 tv.setTextSize(18);

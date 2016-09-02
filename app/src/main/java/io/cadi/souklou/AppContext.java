@@ -6,17 +6,17 @@ import android.content.Context;
 /**
  * Created by arcadius on 08/08/16.
  */
-public class ApplicationContext {
-    private static ApplicationContext mInstance;
+public class AppContext {
+    private static AppContext mInstance;
     private Context context;
 
-    public static ApplicationContext getInstance() {
+    public static AppContext getInstance() {
         if (mInstance == null) mInstance = getSync();
         return mInstance;
     }
 
-    private static synchronized ApplicationContext getSync() {
-        if (mInstance == null) mInstance = new ApplicationContext();
+    private static synchronized AppContext getSync() {
+        if (mInstance == null) mInstance = new AppContext();
         return mInstance;
     }
 

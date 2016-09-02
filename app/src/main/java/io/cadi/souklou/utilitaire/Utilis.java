@@ -5,21 +5,20 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import io.cadi.souklou.ApplicationConstant;
-import io.cadi.souklou.ApplicationContext;
+import io.cadi.souklou.AppConstant;
+import io.cadi.souklou.AppContext;
 
 /**
  * Created by arcadius on 08/08/16.
  */
 public class Utilis {
 
-    private static Context context = ApplicationContext.getInstance().getApplicationContext();
+    private static Context context = AppContext.getInstance().getApplicationContext();
 
 
     private static int calculateInSampleSize(
@@ -62,7 +61,7 @@ public class Utilis {
     }
     //resize out of memory image
     public static void setSharePreference(String name, String value) {
-        SharedPreferences preferences = context.getSharedPreferences(ApplicationConstant.SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(AppConstant.SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
         if (!preferences.contains(name)){
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(name, value);
@@ -72,7 +71,7 @@ public class Utilis {
     }
 
     public static  String getSharePreference(String name) {
-        SharedPreferences preferences = context.getSharedPreferences(ApplicationConstant.SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(AppConstant.SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
         String n = preferences.getString(name, "");
         return  (n.equals("")) ? null : n;
     }

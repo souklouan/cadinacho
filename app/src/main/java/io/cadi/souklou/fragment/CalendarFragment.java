@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.cadi.souklou.ApplicationContext;
+import io.cadi.souklou.AppContext;
 import io.cadi.souklou.R;
 import io.cadi.souklou.adapter.CalendarListAdapter;
 
@@ -39,7 +39,7 @@ public class CalendarFragment extends Fragment {
     }
 
     private void initListViews(){
-        Context context = ApplicationContext.getInstance().getApplicationContext();
+        Context context = AppContext.getInstance().getApplicationContext();
         rcwCalendar.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
         rcwCalendar.setLayoutManager(layoutManager);
