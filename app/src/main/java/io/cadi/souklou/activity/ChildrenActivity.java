@@ -29,9 +29,7 @@ import io.cadi.souklou.utilitaire.Utilis;
 
 public class ChildrenActivity extends AppCompatActivity {
     @BindView(R.id.btnChildrenAdd) Button btnChildrenAdd;
-
-    @BindView(R.id.btnAddChild)
-    Button btnAddChild;
+    
 
     private ParentDb parentDb;
 

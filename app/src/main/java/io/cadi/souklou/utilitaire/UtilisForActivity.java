@@ -19,4 +19,6 @@ public class UtilisForActivity {
         transaction.replace(ressource, fragment);
         transaction.commit();
     }
+
+
 }
