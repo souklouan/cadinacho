@@ -12,10 +12,10 @@ import android.widget.EditText;
 /**
  * Created by arcadius on 14/08/16.
  */
-public class UtilisForActivity {
+public class UtilisActivity {
     Context context;
 
-    public UtilisForActivity(Context context) {
+    public UtilisActivity(Context context) {
         this.context = context;
     }
 

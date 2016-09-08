@@ -3,10 +3,8 @@ package io.cadi.souklou;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,24 +16,15 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthProvider;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.cadi.souklou.activity.ChildrenActivity;
 import io.cadi.souklou.authentication.GoogleAuth;
 import io.cadi.souklou.authentication.SmsAuth;
-import io.cadi.souklou.utilitaire.MainListener;
+import io.cadi.souklou.utilitaire.ListenerApp;
 import io.cadi.souklou.utilitaire.Utilis;
 
 
@@ -81,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                     smsAuth.signInSms(v, phoneNumber);
             }
         });
-        setGooglePlusButtonText(btnLoginGoogle,"Compte google");
+        customGoogleBtn(btnLoginGoogle,"Compte google");
         btnLoginGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,18 +97,19 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getError() != null || loginResult.wasCancelled()) {
                     authFailed();
                 } else {
-                    authSucces(phoneNumber, 0);
+                    authSucces(phoneNumber, "sms");
                 }
             }
         if (requestCode == GoogleAuth.RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            googleAuth.handlerResult(result, new MainListener() {
+            googleAuth.handlerResult(result, new ListenerApp() {
                 @Override
                 public void onSuccess(Object object) {
                     GoogleSignInAccount account = (GoogleSignInAccount) object;//TODO
                     Utilis.setSharePreference(AppConstant.PREF_FAMILY_NAME,account.getFamilyName());
                     Utilis.setSharePreference(AppConstant.PREF_PARENT_NAME,account.getGivenName());
-                    authSucces(account.getDisplayName(), 1);
+                    Utilis.setSharePreference(AppConstant.PREF_PARENT_EMAIL,account.getEmail());
+                    authSucces(account.getDisplayName(), "google");
                 }
 
                 @Override
@@ -130,26 +120,27 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    //type : 0 for sms and 1 for google
-    private void authSucces(String str, int type) {
+    //type :  sms and google
+    private void authSucces(String str, String type) {
         Utilis.setSharePreference(AppConstant.PREF_AUTH_INFO, str);
-        Utilis.setSharePreference(AppConstant.PREF_AUTH_TYPE, String.valueOf(type));
+        Utilis.setSharePreference(AppConstant.PREF_AUTH_TYPE, type);
         startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
         finish();
     }
 
     private void authFailed() {
-        Toast.makeText(LoginActivity.this, "Authentication falses.",
+        //TODO when login failed
+        Toast.makeText(LoginActivity.this, "Authentication failed.",
                 Toast.LENGTH_SHORT).show();
     }
 
-    private void setGooglePlusButtonText(SignInButton signInButton,
+    private void customGoogleBtn(SignInButton signInButton,
                                            String buttonText) {
         for (int i = 0; i < signInButton.getChildCount(); i++) {
             View v = signInButton.getChildAt(i);
             if (v instanceof TextView) {
                 TextView tv = (TextView) v;
-                tv.setTextSize(18);
+                tv.setTextSize(14);
                 tv.setBackgroundResource(R.drawable.google_btn_backgroung);
                 tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.google_plus_48, 0, 0, 0);
                 tv.setTextColor(getResources().getColor(R.color.white));

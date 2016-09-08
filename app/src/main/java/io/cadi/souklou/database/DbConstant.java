@@ -1,5 +1,8 @@
 package io.cadi.souklou.database;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 /**
  * Created by arcadius on 23/08/16.
  */
@@ -7,6 +10,7 @@ public class DbConstant {
 
     //All constant is static and write in uppercase
     //Be careful TABLE is referring a reference in firebase case
+    public static final DatabaseReference FIREBASE_DB = FirebaseDatabase.getInstance().getReference("souklouDb");
     public static final String TABLE_ROOT = "souklou";
     public static final String TABLE_PARENT = "parent";
     public static final String TABLE_CHILDREN = "children";

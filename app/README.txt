@@ -5,8 +5,8 @@
 ***
 ***************************************************************
 
-* Authentification google (LoginActivity) EN COURS
-* Faire fonctionner entierement la connexion
+* Authentification google (LoginActivity) TERMINER --Arcadius
+* Faire fonctionner entierement la connexion TERMINER --Arcadius
 * Terminer le module d'ajout d'un enfant (ChildrenActivity et RegisteredChildActivity) EN COURS -- Narech
 * Enregistrer l'image de l'enfant avec le module "STOCKAGE" de firebase (RegisteredChildActivity)
 * Changer le background des button "BLEU" au click (main_btn_backgroung.xml)EN COURS -- Narech
