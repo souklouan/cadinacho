@@ -3,7 +3,7 @@ package io.cadi.souklou.database;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
-import io.cadi.souklou.ApplicationConstant;
+import io.cadi.souklou.AppConstant;
 import io.cadi.souklou.models.Parent;
 
 /**
@@ -11,7 +11,7 @@ import io.cadi.souklou.models.Parent;
  */
 public class ParentDb {
 
-    private DatabaseReference refRoot = ApplicationConstant.FIREBASE_DB;
+    private DatabaseReference refRoot = AppConstant.FIREBASE_DB;
     private DatabaseReference refParent = refRoot.child(DbConstant.TABLE_PARENT+"/1");
     private String refKey;
 

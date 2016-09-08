@@ -1,14 +1,11 @@
 package io.cadi.souklou;
 
-import android.app.Activity;
 import android.app.Application;
 import android.os.Build;
 import android.os.StrictMode;
 
 //import com.facebook.FacebookSdk;
 import com.facebook.accountkit.AccountKit;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by arcadius on 08/08/16.
@@ -19,7 +16,7 @@ public class Souklou extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ApplicationContext.getInstance().initialize(this);
+        AppContext.getInstance().initialize(this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             enableStrictMode();

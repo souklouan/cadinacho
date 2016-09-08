@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "644589908472-li39c2r0d8r9jotn3b4q4c8ikc7ma6jf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.souklou.android",
+            "certificate_hash": "D04AB52E4FD8906F757DC7B4493F29DF617BB724"
+          }
+        },
+        {
+          "client_id": "644589908472-av5r1k4jrhu5n6b6snkbpkuob3oi8ees.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.souklou.android",
+            "certificate_hash": "0309685717A7C5CCA6533D111B5F6D4B0C9C6BC6"
+          }
+        },
+        {
           "client_id": "644589908472-ihggegra13ronbhuvijkiui5qhnnsnua.apps.googleusercontent.com",
           "client_type": 3
         }

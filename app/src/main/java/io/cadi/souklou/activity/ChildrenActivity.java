@@ -2,6 +2,7 @@ package io.cadi.souklou.activity;
 
 
 import android.content.DialogInterface;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -18,20 +19,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.cadi.souklou.AppConstant;
 import io.cadi.souklou.R;
 import io.cadi.souklou.adapter.ChildrenAdapter;
 import io.cadi.souklou.database.ListenerDb;
 import io.cadi.souklou.database.ParentDb;
 import io.cadi.souklou.models.Parent;
 import io.cadi.souklou.utilitaire.Utilis;
+import io.cadi.souklou.utilitaire.UtilisForActivity;
 
 public class ChildrenActivity extends AppCompatActivity {
     @BindView(R.id.btnChildrenAdd) Button btnChildrenAdd;
-    
 
     private ParentDb parentDb;
+    private UtilisForActivity utilis;
+    private int typeOfLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,33 +47,11 @@ public class ChildrenActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initListViews();
         ButterKnife.bind(this);
+
         parentDb = new ParentDb();
-        LayoutInflater factory = LayoutInflater.from(this);
-        final View alertDialogView = factory.inflate(R.layout.dialog_add_infos_parent, null);
+        utilis = new UtilisForActivity(this);
 
-        AlertDialog.Builder adb = new AlertDialog.Builder(this);
-
-        adb.setView(alertDialogView);
-
-        adb.setTitle("Complètez votre profil");
-
-        adb.setIcon(R.drawable.icone1);
-
-        adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                EditText firstName = (EditText)alertDialogView.findViewById(R.id.firstName);
-                EditText lastName = (EditText)alertDialogView.findViewById(R.id.lastName);
-                EditText area = (EditText)alertDialogView.findViewById(R.id.area);
-                addNewParent(firstName.getText().toString(),lastName.getText().toString(),area.getText().toString());
-
-            } });
-
-        adb.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            } });
-        adb.show();
-
+        showParentDialog();
 
         btnChildrenAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +61,13 @@ public class ChildrenActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        //Log.e("givenNamed",user.getDisplayName());
+        //Log.e("FamNamed",Utilis.getSharePreference("FamilyName"));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,6 +83,56 @@ public class ChildrenActivity extends AppCompatActivity {
         ChildrenAdapter adapter = new ChildrenAdapter(this);
         recyclerView.setAdapter(adapter);
 
+    }
+
+
+    private void showParentDialog() {
+        typeOfLogin = Integer.parseInt(Utilis.getSharePreference(AppConstant.PREF_AUTH_TYPE));
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View alertDialogView = factory.inflate(R.layout.dialog_add_infos_parent, null);
+        final EditText firstName = (EditText)alertDialogView.findViewById(R.id.firstName);
+        final EditText lastName = (EditText)alertDialogView.findViewById(R.id.lastName);
+        final EditText area = (EditText)alertDialogView.findViewById(R.id.area);
+        final AlertDialog adb = new AlertDialog.Builder(this)
+                .setView(alertDialogView)
+                .setTitle("Complètez votre profil")
+                .setCancelable(false)
+                .setIcon(R.drawable.icone1)//TODO: change icone with the appropriate
+                .setPositiveButton("OK", null) //Set to null. We override the onclick
+                .setNegativeButton("Annuler", null)
+                .create();
+        if (typeOfLogin == 1) {
+            firstName.setText(Utilis.getSharePreference(AppConstant.PREF_PARENT_NAME));
+            lastName.setText(Utilis.getSharePreference(AppConstant.PREF_FAMILY_NAME));
+        }
+        adb.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(final DialogInterface dialog) {
+                adb.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(utilis.viewInputValidator(alertDialogView)) {
+                            saveParent();
+                            dialog.dismiss();
+                        } else {
+                            Snackbar.make(alertDialogView,"Veuillez remplir tous les champs",Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                adb.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                       finish();
+                    }
+                });
+
+            }
+        });
+        adb.show();
+    }
+
+    private void saveParent() {
+        //addNewParent(firstName.getText().toString(),lastName.getText().toString(),area.getText().toString());
     }
 
     private void addNewParent(String firstName,String lastName,String area) {
@@ -112,9 +153,9 @@ public class ChildrenActivity extends AppCompatActivity {
 
     private Parent getParentFromInput(String firstName,String lastName,String area) {
         Parent parent = new Parent();
-        parent.setFirstName(firstName.toString());
-        parent.setLastName(lastName.toString());
-        parent.setArea(area.toString());
+        parent.setFirstName(firstName);
+        parent.setLastName(lastName);
+        parent.setArea(area);
         parent.setCreated(Utilis.getCurrentTime());
         return parent;
     }
