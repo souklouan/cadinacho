@@ -13,32 +13,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.Query;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.cadi.souklou.AppConstant;
 import io.cadi.souklou.R;
 import io.cadi.souklou.adapter.ChildrenAdapter;
+import io.cadi.souklou.database.DbConstant;
 import io.cadi.souklou.database.ListenerDb;
 import io.cadi.souklou.database.ParentDb;
 import io.cadi.souklou.models.Parent;
 import io.cadi.souklou.utilitaire.Utilis;
-import io.cadi.souklou.utilitaire.UtilisForActivity;
+import io.cadi.souklou.utilitaire.UtilisActivity;
 
 public class ChildrenActivity extends AppCompatActivity {
     @BindView(R.id.btnChildrenAdd) Button btnChildrenAdd;
 
     private ParentDb parentDb;
-    private UtilisForActivity utilis;
-    private int typeOfLogin;
+    private UtilisActivity utilis;
+    private String typeOfLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +49,10 @@ public class ChildrenActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         parentDb = new ParentDb();
-        utilis = new UtilisForActivity(this);
+        utilis = new UtilisActivity(this);
 
-        showParentDialog();
+        if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
+            showParentDialog();
 
         btnChildrenAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,9 +65,8 @@ public class ChildrenActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-        //Log.e("givenNamed",user.getDisplayName());
-        //Log.e("FamNamed",Utilis.getSharePreference("FamilyName"));
+        if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
+            showParentDialog();
     }
 
     @Override
@@ -87,11 +87,13 @@ public class ChildrenActivity extends AppCompatActivity {
 
 
     private void showParentDialog() {
-        typeOfLogin = Integer.parseInt(Utilis.getSharePreference(AppConstant.PREF_AUTH_TYPE));
+        typeOfLogin = Utilis.getSharePreference(AppConstant.PREF_AUTH_TYPE);
         LayoutInflater factory = LayoutInflater.from(this);
         final View alertDialogView = factory.inflate(R.layout.dialog_add_infos_parent, null);
+        final TextView authInfo = (TextView)alertDialogView.findViewById(R.id.authInfo);
         final EditText firstName = (EditText)alertDialogView.findViewById(R.id.firstName);
         final EditText lastName = (EditText)alertDialogView.findViewById(R.id.lastName);
+        final EditText phoneNumberEdt = (EditText)alertDialogView.findViewById(R.id.phoneNumber);
         final EditText area = (EditText)alertDialogView.findViewById(R.id.area);
         final AlertDialog adb = new AlertDialog.Builder(this)
                 .setView(alertDialogView)
@@ -101,10 +103,22 @@ public class ChildrenActivity extends AppCompatActivity {
                 .setPositiveButton("OK", null) //Set to null. We override the onclick
                 .setNegativeButton("Annuler", null)
                 .create();
-        if (typeOfLogin == 1) {
-            firstName.setText(Utilis.getSharePreference(AppConstant.PREF_PARENT_NAME));
-            lastName.setText(Utilis.getSharePreference(AppConstant.PREF_FAMILY_NAME));
+        authInfo.setText(Utilis.getSharePreference(AppConstant.PREF_AUTH_INFO));
+        final Parent parent = new Parent();
+        if (typeOfLogin.equals("google")) {
+            //hide firstname input and lastname input
+            firstName.setText("empty");
+            firstName.setVisibility(View.GONE);
+            lastName.setText("empty");
+            lastName.setVisibility(View.GONE);
+            parent.setFirstName(Utilis.getSharePreference(AppConstant.PREF_PARENT_NAME));
+            parent.setLastName(Utilis.getSharePreference(AppConstant.PREF_FAMILY_NAME));
+            parent.setEmail(Utilis.getSharePreference(AppConstant.PREF_PARENT_EMAIL));
+        }else if (typeOfLogin.equals("sms")) {
+            phoneNumberEdt.setText("empty");
+            phoneNumberEdt.setVisibility(View.GONE);
         }
+
         adb.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(final DialogInterface dialog) {
@@ -112,8 +126,17 @@ public class ChildrenActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         if(utilis.viewInputValidator(alertDialogView)) {
-                            saveParent();
-                            dialog.dismiss();
+                            if (typeOfLogin.equals("google")) {
+                                parent.setPhone(phoneNumberEdt.getText().toString());
+                                parent.setArea(area.getText().toString());
+                            }else if (typeOfLogin.equals("sms")) {
+                                parent.setFirstName(firstName.getText().toString());
+                                parent.setLastName(lastName.getText().toString());
+                                parent.setArea(area.getText().toString());
+                                parent.setPhone(Utilis.getSharePreference(AppConstant.PREF_AUTH_INFO));
+                            }
+                            saveParent(parent, dialog);
+
                         } else {
                             Snackbar.make(alertDialogView,"Veuillez remplir tous les champs",Snackbar.LENGTH_SHORT).show();
                         }
@@ -131,17 +154,14 @@ public class ChildrenActivity extends AppCompatActivity {
         adb.show();
     }
 
-    private void saveParent() {
-        //addNewParent(firstName.getText().toString(),lastName.getText().toString(),area.getText().toString());
-    }
-
-    private void addNewParent(String firstName,String lastName,String area) {
-        Parent parent = getParentFromInput(firstName,lastName,area);
+    private void saveParent(Parent parent, final DialogInterface dialog) {
+        parent.setCreated(Utilis.getCurrentTime());
         parentDb.addNewParent(parent, new ListenerDb() {
             @Override
             public void onSuccess(Object o) {
                 Parent c = (Parent) o;
-                Log.e("voir back", c.getFirstName());
+                Log.e("parent",c.getFirstName());
+                dialog.dismiss();
             }
 
             @Override
@@ -151,12 +171,10 @@ public class ChildrenActivity extends AppCompatActivity {
         });
     }
 
-    private Parent getParentFromInput(String firstName,String lastName,String area) {
-        Parent parent = new Parent();
-        parent.setFirstName(firstName);
-        parent.setLastName(lastName);
-        parent.setArea(area);
-        parent.setCreated(Utilis.getCurrentTime());
-        return parent;
+    private void check() {
+        Query myTopPostsQuery = DbConstant.FIREBASE_DB.child("parent")
+                .orderByChild("parent")
+                ;
+
     }
 }

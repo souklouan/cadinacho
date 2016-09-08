@@ -11,10 +11,12 @@ public class AppConstant {
     //all constant is static and write in uppercase
     //public static String
     public static final String SHARE_PREFERENCE_NAME = "cadi.io";
-    public static final DatabaseReference FIREBASE_DB = FirebaseDatabase.getInstance().getReference("souklouDb");
 
     public static final String PREF_AUTH_INFO = "authInfo";
     public static final String PREF_FAMILY_NAME = "familyName";
-    public static final String PREF_PARENT_NAME = "givenName";
+    public static final String PREF_PARENT_NAME = "parentName";
+    public static final String PREF_PARENT_EMAIL = "parentEmail";
+    public static final String PREF_PARENT_ID = "parentKey";
     public static final String PREF_AUTH_TYPE = "authType";//type : 0 for sms and 1 for google
+
 }

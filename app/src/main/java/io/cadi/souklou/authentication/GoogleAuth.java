@@ -20,7 +20,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import io.cadi.souklou.LoginActivity;
 import io.cadi.souklou.R;
-import io.cadi.souklou.utilitaire.MainListener;
+import io.cadi.souklou.utilitaire.ListenerApp;
 
 /**
  * Created by arcadius on 8/28/2016.
@@ -51,7 +51,7 @@ public class GoogleAuth implements GoogleApiClient.OnConnectionFailedListener{
         context.startActivityForResult(signInIntent, GoogleAuth.RC_SIGN_IN);
     }
 
-    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct, final MainListener callback) {
+    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct, final ListenerApp callback) {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -66,7 +66,7 @@ public class GoogleAuth implements GoogleApiClient.OnConnectionFailedListener{
                 });
     }
 
-    public void handlerResult(GoogleSignInResult result, MainListener callback) {
+    public void handlerResult(GoogleSignInResult result, ListenerApp callback) {
         if (result.isSuccess()) {
             // Google Sign In was successful, authenticate with Firebase
             GoogleSignInAccount account = result.getSignInAccount();
@@ -81,6 +81,7 @@ public class GoogleAuth implements GoogleApiClient.OnConnectionFailedListener{
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        //TODO connection failed IMPORTANT
         Toast.makeText(context, "Authentication connection failed.",
                 Toast.LENGTH_LONG).show();
     }
