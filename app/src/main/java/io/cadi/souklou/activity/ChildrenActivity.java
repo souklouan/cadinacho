@@ -19,7 +19,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,6 +63,8 @@ public class ChildrenActivity extends AppCompatActivity {
                 startActivity(new Intent(ChildrenActivity.this, RegisteredChildActivity.class));
             }
         });
+
+        check();
     }
 
     @Override
@@ -166,15 +171,36 @@ public class ChildrenActivity extends AppCompatActivity {
 
             @Override
             public void onFailed(Object o) {
-                Log.e("faillllll", "echeccccc");
+                Log.e("fail", "echec");
             }
         });
     }
 
-    private void check() {
+    private void check(Utilis.AuthType type,String authInfo, ListenerDb callback) {
+        String orderTag="";
+        if(type == Utilis.AuthType.GOOGLE)
+            orderTag = "email";
+        else if(type == Utilis.AuthType.SMS)
+            orderTag = "phone";
         Query myTopPostsQuery = DbConstant.FIREBASE_DB.child("parent")
-                .orderByChild("parent")
-                ;
+                .orderByChild(orderTag)
+                .equalTo(authInfo);
+
+        myTopPostsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    Parent parent = data.getValue(Parent.class);
+                    Log.e("check",parent.getPhone());
+                    Log.e("keyCheck",data.getKey());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("check error",databaseError.getMessage());
+            }
+        });
 
     }
 }

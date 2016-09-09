@@ -40,7 +40,7 @@ public class ParentDb extends UtilisDb {
            public void onSuccess(Object o) {
                final String key = (String) o;//get new parent reference key
                DatabaseReference newParent  = refParent.child(key);
-               newParent.child(DbConstant.TABLE_PARENT).setValue(parent, new DatabaseReference.CompletionListener() {
+               newParent.setValue(parent, new DatabaseReference.CompletionListener() {
                    @Override
                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                        if (databaseError != null)
