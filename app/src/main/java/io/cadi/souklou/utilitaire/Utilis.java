@@ -82,4 +82,6 @@ public class Utilis {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(c.getTime());
     }
+
+    public enum AuthType {GOOGLE, SMS}
 }

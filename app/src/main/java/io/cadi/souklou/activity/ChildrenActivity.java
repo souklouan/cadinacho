@@ -9,27 +9,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
-import com.google.firebase.database.Query;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.cadi.souklou.AppConstant;
 import io.cadi.souklou.R;
 import io.cadi.souklou.adapter.ChildrenAdapter;
-import io.cadi.souklou.database.DbConstant;
-import io.cadi.souklou.database.ListenerDb;
 import io.cadi.souklou.database.ParentDb;
 import io.cadi.souklou.models.Parent;
+import io.cadi.souklou.utilitaire.ListenerApp;
 import io.cadi.souklou.utilitaire.Utilis;
 import io.cadi.souklou.utilitaire.UtilisActivity;
 
@@ -52,7 +47,7 @@ public class ChildrenActivity extends AppCompatActivity {
         utilis = new UtilisActivity(this);
 
         if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
-            showParentDialog();
+            showParentInfoDialog();
 
         btnChildrenAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,13 +55,14 @@ public class ChildrenActivity extends AppCompatActivity {
                 startActivity(new Intent(ChildrenActivity.this, RegisteredChildActivity.class));
             }
         });
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
-            showParentDialog();
+            showParentInfoDialog();
     }
 
     @Override
@@ -86,7 +82,7 @@ public class ChildrenActivity extends AppCompatActivity {
     }
 
 
-    private void showParentDialog() {
+    private void showParentInfoDialog() {
         typeOfLogin = Utilis.getSharePreference(AppConstant.PREF_AUTH_TYPE);
         LayoutInflater factory = LayoutInflater.from(this);
         final View alertDialogView = factory.inflate(R.layout.dialog_add_infos_parent, null);
@@ -99,13 +95,12 @@ public class ChildrenActivity extends AppCompatActivity {
                 .setView(alertDialogView)
                 .setTitle("Complètez votre profil")
                 .setCancelable(false)
-                .setIcon(R.drawable.icone1)//TODO: change icone with the appropriate
+                .setIcon(R.drawable.ic_person_black_18dp)//TODO: change icone with the appropriate
                 .setPositiveButton("OK", null) //Set to null. We override the onclick
-                .setNegativeButton("Annuler", null)
                 .create();
-        authInfo.setText(Utilis.getSharePreference(AppConstant.PREF_AUTH_INFO));
+        authInfo.setText(Utilis.getSharePreference(AppConstant.PREF_PARENT_PHONENUMBER));
         final Parent parent = new Parent();
-        if (typeOfLogin.equals("google")) {
+        if (typeOfLogin.equals(Utilis.AuthType.GOOGLE.name())) {
             //hide firstname input and lastname input
             firstName.setText("empty");
             firstName.setVisibility(View.GONE);
@@ -114,7 +109,7 @@ public class ChildrenActivity extends AppCompatActivity {
             parent.setFirstName(Utilis.getSharePreference(AppConstant.PREF_PARENT_NAME));
             parent.setLastName(Utilis.getSharePreference(AppConstant.PREF_FAMILY_NAME));
             parent.setEmail(Utilis.getSharePreference(AppConstant.PREF_PARENT_EMAIL));
-        }else if (typeOfLogin.equals("sms")) {
+        }else if (typeOfLogin.equals(Utilis.AuthType.SMS.name())) {
             phoneNumberEdt.setText("empty");
             phoneNumberEdt.setVisibility(View.GONE);
         }
@@ -126,55 +121,36 @@ public class ChildrenActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         if(utilis.viewInputValidator(alertDialogView)) {
-                            if (typeOfLogin.equals("google")) {
+                            if (typeOfLogin.equals(Utilis.AuthType.GOOGLE.name())) {
                                 parent.setPhone(phoneNumberEdt.getText().toString());
                                 parent.setArea(area.getText().toString());
-                            }else if (typeOfLogin.equals("sms")) {
+                            }else if (typeOfLogin.equals(Utilis.AuthType.SMS.name())) {
                                 parent.setFirstName(firstName.getText().toString());
                                 parent.setLastName(lastName.getText().toString());
                                 parent.setArea(area.getText().toString());
-                                parent.setPhone(Utilis.getSharePreference(AppConstant.PREF_AUTH_INFO));
+                                parent.setPhone(Utilis.getSharePreference(AppConstant.PREF_PARENT_PHONENUMBER));
                             }
-                            saveParent(parent, dialog);
+                            parentDb.saveParent(parent, new ListenerApp() {
+                                @Override
+                                public void onSuccess(Object object) {
+                                    adb.cancel();
+                                }
+
+                                @Override
+                                public void onFailed(Object object) {
+                                    //parent data not add to firebase
+                                }
+                            });
 
                         } else {
                             Snackbar.make(alertDialogView,"Veuillez remplir tous les champs",Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });
-                adb.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                       finish();
-                    }
-                });
-
             }
         });
         adb.show();
     }
 
-    private void saveParent(Parent parent, final DialogInterface dialog) {
-        parent.setCreated(Utilis.getCurrentTime());
-        parentDb.addNewParent(parent, new ListenerDb() {
-            @Override
-            public void onSuccess(Object o) {
-                Parent c = (Parent) o;
-                Log.e("parent",c.getFirstName());
-                dialog.dismiss();
-            }
 
-            @Override
-            public void onFailed(Object o) {
-                Log.e("faillllll", "echeccccc");
-            }
-        });
-    }
-
-    private void check() {
-        Query myTopPostsQuery = DbConstant.FIREBASE_DB.child("parent")
-                .orderByChild("parent")
-                ;
-
-    }
 }
