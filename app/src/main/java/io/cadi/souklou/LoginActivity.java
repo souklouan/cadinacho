@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginLogoImg.setImageBitmap(
                 Utilis.decodeSampledBitmapFromResource(getResources(), R.drawable.icone_simple, 500, 500));
-        loginLogoImg.requestFocus();
+
 
         connectSmsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(Utilis.getSharePreference(AppConstant.PREF_AUTH_INFO) != null) {
+        if(Utilis.getSharePreference(AppConstant.PREF_PARENT_PHONENUMBER) != null) {
             startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
             finish();
         }
@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getError() != null || loginResult.wasCancelled()) {
                     authFailed();
                 } else {
-                    authSucces(phoneNumber, "sms");
+                    authSucces(phoneNumber, Utilis.AuthType.SMS);
                 }
             }
         if (requestCode == GoogleAuth.RC_SIGN_IN) {
@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                     Utilis.setSharePreference(AppConstant.PREF_FAMILY_NAME,account.getFamilyName());
                     Utilis.setSharePreference(AppConstant.PREF_PARENT_NAME,account.getGivenName());
                     Utilis.setSharePreference(AppConstant.PREF_PARENT_EMAIL,account.getEmail());
-                    authSucces(account.getDisplayName(), "google");
+                    authSucces(account.getDisplayName(), Utilis.AuthType.GOOGLE);
                 }
 
                 @Override
@@ -121,9 +121,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //type :  sms and google
-    private void authSucces(String str, String type) {
-        Utilis.setSharePreference(AppConstant.PREF_AUTH_INFO, str);
-        Utilis.setSharePreference(AppConstant.PREF_AUTH_TYPE, type);
+    private void authSucces(String str, Utilis.AuthType type) {
+        Utilis.setSharePreference(AppConstant.PREF_PARENT_PHONENUMBER, str);
+        Utilis.setSharePreference(AppConstant.PREF_AUTH_TYPE, type.name());
         startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
         finish();
     }
