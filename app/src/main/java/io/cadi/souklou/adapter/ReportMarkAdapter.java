@@ -1,6 +1,7 @@
 package io.cadi.souklou.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -68,8 +69,35 @@ public class ReportMarkAdapter extends StatelessSection {
     @Override
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
         ReportNormalHolder itemHolder = (ReportNormalHolder) holder;
-        itemHolder.txtReportMediumSubject.setText(data.get(position).get("value"));
+
+            itemHolder.txtReportMediumSubject.setText(data.get(position).get("value"));
         itemHolder.txtReportNormalDate.setText(data.get(position).get("date"));
+        if (Float.parseFloat(data.get(position).get("note")) > 17){
+            itemHolder.id_report_normal_row.setBackgroundResource(R.color.bg_very_well);
+        }else if (Float.parseFloat(data.get(position).get("note")) > 15){
+        itemHolder.id_report_normal_row.setBackgroundResource(R.color.bg_well);
+        }
+        else if (Float.parseFloat(data.get(position).get("note")) > 12){
+            itemHolder.id_report_normal_row.setBackgroundResource(R.color.bg_quite_well);
+
+        }else if (Float.parseFloat(data.get(position).get("note")) > 10){
+            itemHolder.id_report_normal_row.setBackgroundResource(R.color.bg_fair);
+
+        }else if (Float.parseFloat(data.get(position).get("note")) > 5){
+            itemHolder.id_report_normal_row.setBackgroundResource(R.color.bg_low);
+            itemHolder.txtReportMediumSubject.setTextColor(Color.parseColor("#FFFFFF"));
+            itemHolder.txtReportNormalDate.setTextColor(Color.parseColor("#FFFFFF"));
+            itemHolder.txtNote.setTextColor(Color.parseColor("#FFFFFF"));
+
+
+        }else if (Float.parseFloat(data.get(position).get("note")) > 0){
+            itemHolder.id_report_normal_row.setBackgroundResource(R.color.bg_very_low);
+            itemHolder.txtReportMediumSubject.setTextColor(Color.parseColor("#FFFFFF"));
+            itemHolder.txtReportNormalDate.setTextColor(Color.parseColor("#FFFFFF"));
+            itemHolder.txtNote.setTextColor(Color.parseColor("#FFFFFF"));
+
+        }
+        itemHolder.txtNote.setText(data.get(position).get("note"));
     }
 
 

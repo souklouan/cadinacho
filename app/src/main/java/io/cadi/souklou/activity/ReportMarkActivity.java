@@ -52,6 +52,7 @@ public class ReportMarkActivity extends AppCompatActivity {
 
     private void initData() {
         String[] subject = {"Mathematique", "anglais", "Francais", "Philosophie", "Physique", "Svt"};
+        String[] note = {"13", "07", "16", "03", "19", "11"};
         for (int i = 0; i < subject.length; i++) {
             Map<String, String> map = new HashMap<>();
             if (i < 3)
@@ -59,6 +60,7 @@ public class ReportMarkActivity extends AppCompatActivity {
             else
                 map.put("date","Mercredi 18");
             map.put("value",subject[i]);
+            map.put("note",note[i]);
             data.add(map);
             //Log.e("data", );
         }

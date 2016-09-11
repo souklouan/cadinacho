@@ -5,7 +5,8 @@
     android:orientation="horizontal"
     android:paddingLeft="@dimen/padding_normal"
     android:paddingRight="@dimen/padding_normal"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:id="@+id/id_report_normal_row">
 
     <LinearLayout
         android:id="@+id/linearReportMLeft"
@@ -18,14 +19,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Matière"
-            android:textSize="@dimen/text_normal_size"/>
+            android:textSize="@dimen/text_normal_size"
+            android:textColor="@color/colorSecondary_text" />
         <TextView
             android:id="@+id/txtReportNormalDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lundi 12 mai"
             android:textSize="@dimen/text_small_size"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textColor="@color/colorSecondary_text" />
     </LinearLayout>
 
     <TextView
@@ -36,6 +39,8 @@
         android:layout_marginLeft="20dp"
         android:textSize="@dimen/text_normal_size"
         android:gravity="left"
-        android:layout_gravity="center_vertical"/>
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/colorSecondary_text"
+        android:id="@+id/txtNote" />
 
 </LinearLayout>
