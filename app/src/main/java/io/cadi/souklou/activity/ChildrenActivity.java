@@ -96,7 +96,7 @@ public class ChildrenActivity extends AppCompatActivity {
                 .setTitle("Complètez votre profil")
                 .setCancelable(false)
                 .setIcon(R.drawable.ic_person_black_18dp)//TODO: change icone with the appropriate
-                .setPositiveButton("OK", null) //Set to null. We override the onclick
+                .setPositiveButton("Valider", null) //Set to null. We override the onclick
                 .create();
         authInfo.setText(Utilis.getSharePreference(AppConstant.PREF_PARENT_PHONENUMBER));
         final Parent parent = new Parent();
@@ -133,7 +133,8 @@ public class ChildrenActivity extends AppCompatActivity {
                             parentDb.saveParent(parent, new ListenerApp() {
                                 @Override
                                 public void onSuccess(Object object) {
-                                    adb.cancel();
+                                    dialog.dismiss();
+                                    adb.onDetachedFromWindow();
                                 }
 
                                 @Override

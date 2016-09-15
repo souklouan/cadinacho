@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import io.cadi.souklou.activity.ChildrenActivity;
 import io.cadi.souklou.authentication.GoogleAuth;
 import io.cadi.souklou.authentication.SmsAuth;
 import io.cadi.souklou.utilitaire.ListenerApp;
+import io.cadi.souklou.utilitaire.TransparentLoading;
 import io.cadi.souklou.utilitaire.Utilis;
 
 
@@ -39,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
     ImageView loginLogoImg;
     @BindView(R.id.btnLoginGoogle)
     SignInButton btnLoginGoogle;
+    @BindView(R.id.relativeL)
+    RelativeLayout relativeL;
 
     private GoogleAuth googleAuth;
     private SmsAuth smsAuth;
@@ -53,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         googleAuth = new GoogleAuth(this);
         smsAuth = new SmsAuth(this, AccountKitActivity.class);
+
+
+        TransparentLoading.getInstance().addViewto(relativeL);
 
         loginLogoImg.setImageBitmap(
                 Utilis.decodeSampledBitmapFromResource(getResources(), R.drawable.icone_simple, 500, 500));

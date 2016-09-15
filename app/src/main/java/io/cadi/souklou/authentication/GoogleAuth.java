@@ -29,24 +29,27 @@ public class GoogleAuth implements GoogleApiClient.OnConnectionFailedListener{
 
     private LoginActivity context;
     private FirebaseAuth mAuth;
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleApiClient mGoogleApiClient = null;
     public static int RC_SIGN_IN = 9999;
 
 
     public GoogleAuth(LoginActivity context) {
         this.context =  context;
         mAuth = FirebaseAuth.getInstance();
+    }
+
+    public void signInGoogle() {
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(context.getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(context)
-                .enableAutoManage(context /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-    }
-
-    public void signInGoogle() {
+        if (mGoogleApiClient == null){
+            mGoogleApiClient = new GoogleApiClient.Builder(context)
+                    .enableAutoManage(context /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
+        }
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         context.startActivityForResult(signInIntent, GoogleAuth.RC_SIGN_IN);
     }
