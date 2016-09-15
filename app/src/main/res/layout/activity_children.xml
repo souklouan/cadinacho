@@ -46,7 +46,8 @@
                 android:id="@+id/btnChildrenAdd"
                 style="@style/BtnBackgroungNormal"
                 android:text="Ajouter"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp"
+                android:clickable="true" />
         </LinearLayout>
 
     </LinearLayout>

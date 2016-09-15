@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/relativeL">
    <ScrollView
        android:layout_width="match_parent"
        android:layout_height="match_parent">
@@ -52,7 +53,8 @@
                 android:text="@string/connectBtn"
                 style="@style/BtnBackgroungBig"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="12dp"/>
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/selector_rounded_blue_green" />
          </LinearLayout>
 
          <LinearLayout

@@ -70,6 +70,7 @@ public class Utilis {
             Log.e("SharePreference", name+" already exist");
     }
 
+
     public static  String getSharePreference(String name) {
         SharedPreferences preferences = context.getSharedPreferences(AppConstant.SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
         String n = preferences.getString(name, "");

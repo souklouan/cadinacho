@@ -117,14 +117,6 @@ public class ChildrenActivity extends AppCompatActivity {
         }
         final AlertDialog show = adb.show();
 
-        show.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                Log.e("dismiss","dialog");
-                dialog.cancel();
-            }
-        });
-
         btnDiaInfoPar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

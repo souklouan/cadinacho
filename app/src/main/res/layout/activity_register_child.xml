@@ -94,7 +94,8 @@
                     android:text="@string/registerBtn"
                     style="@style/BtnBackgroungBig"
                     android:layout_marginTop="25dp"
-                    android:layout_marginBottom="12dp"/>
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/selector_rounded_blue_green" />
 
 
             </LinearLayout>
