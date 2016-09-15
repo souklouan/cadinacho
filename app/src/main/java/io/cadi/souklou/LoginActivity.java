@@ -54,6 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         googleAuth = new GoogleAuth(this);
         smsAuth = new SmsAuth(this, AccountKitActivity.class);
 
+
+        if(Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) != null) {
+            startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
+            finish();
+        }
+
         loginLogoImg.setImageBitmap(
                 Utilis.decodeSampledBitmapFromResource(getResources(), R.drawable.icone_simple, 500, 500));
 
@@ -83,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(Utilis.getSharePreference(AppConstant.PREF_PARENT_PHONENUMBER) != null) {
+        if(Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) != null) {
             startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
             finish();
         }

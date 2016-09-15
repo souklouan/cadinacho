@@ -48,4 +48,13 @@
         style="@style/EditText"
         android:layout_marginBottom="10dp"/>
 
+    <Button
+        android:id="@+id/btnDiaInfoPar"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        style="@style/BtnBackgroungNormal"
+        android:text="Valider"
+        android:layout_gravity="end"
+        android:layout_marginRight="@dimen/margin_normal"/>
+
     </LinearLayout>

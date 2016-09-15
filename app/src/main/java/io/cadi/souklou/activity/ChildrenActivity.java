@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -91,13 +92,14 @@ public class ChildrenActivity extends AppCompatActivity {
         final EditText lastName = (EditText)alertDialogView.findViewById(R.id.lastName);
         final EditText phoneNumberEdt = (EditText)alertDialogView.findViewById(R.id.phoneNumber);
         final EditText area = (EditText)alertDialogView.findViewById(R.id.area);
-        final AlertDialog adb = new AlertDialog.Builder(this)
-                .setView(alertDialogView)
-                .setTitle("Complètez votre profil")
-                .setCancelable(false)
-                .setIcon(R.drawable.ic_person_black_18dp)//TODO: change icone with the appropriate
-                .setPositiveButton("OK", null) //Set to null. We override the onclick
-                .create();
+        final Button btnDiaInfoPar = (Button)alertDialogView.findViewById(R.id.btnDiaInfoPar);
+        AlertDialog.Builder adb = new AlertDialog.Builder(this);
+        adb.setView(alertDialogView);
+        adb.setTitle("Complètez votre profil");
+        adb.setCancelable(false);
+        adb.setIcon(R.drawable.ic_person_black_18dp);//TODO: change icone with the appropriate
+        adb.create();
+                //.create();
         authInfo.setText(Utilis.getSharePreference(AppConstant.PREF_PARENT_PHONENUMBER));
         final Parent parent = new Parent();
         if (typeOfLogin.equals(Utilis.AuthType.GOOGLE.name())) {
@@ -113,43 +115,47 @@ public class ChildrenActivity extends AppCompatActivity {
             phoneNumberEdt.setText("empty");
             phoneNumberEdt.setVisibility(View.GONE);
         }
+        final AlertDialog show = adb.show();
 
-        adb.setOnShowListener(new DialogInterface.OnShowListener() {
+        show.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
-            public void onShow(final DialogInterface dialog) {
-                adb.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(utilis.viewInputValidator(alertDialogView)) {
-                            if (typeOfLogin.equals(Utilis.AuthType.GOOGLE.name())) {
-                                parent.setPhone(phoneNumberEdt.getText().toString());
-                                parent.setArea(area.getText().toString());
-                            }else if (typeOfLogin.equals(Utilis.AuthType.SMS.name())) {
-                                parent.setFirstName(firstName.getText().toString());
-                                parent.setLastName(lastName.getText().toString());
-                                parent.setArea(area.getText().toString());
-                                parent.setPhone(Utilis.getSharePreference(AppConstant.PREF_PARENT_PHONENUMBER));
-                            }
-                            parentDb.saveParent(parent, new ListenerApp() {
-                                @Override
-                                public void onSuccess(Object object) {
-                                    adb.cancel();
-                                }
-
-                                @Override
-                                public void onFailed(Object object) {
-                                    //parent data not add to firebase
-                                }
-                            });
-
-                        } else {
-                            Snackbar.make(alertDialogView,"Veuillez remplir tous les champs",Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+            public void onDismiss(DialogInterface dialog) {
+                Log.e("dismiss","dialog");
+                dialog.cancel();
             }
         });
-        adb.show();
+
+        btnDiaInfoPar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(utilis.viewInputValidator(alertDialogView)) {
+                    if (typeOfLogin.equals(Utilis.AuthType.GOOGLE.name())) {
+                        parent.setPhone(phoneNumberEdt.getText().toString());
+                        parent.setArea(area.getText().toString());
+                    }else if (typeOfLogin.equals(Utilis.AuthType.SMS.name())) {
+                        parent.setFirstName(firstName.getText().toString());
+                        parent.setLastName(lastName.getText().toString());
+                        parent.setArea(area.getText().toString());
+                        parent.setPhone(Utilis.getSharePreference(AppConstant.PREF_PARENT_PHONENUMBER));
+                    }
+                    parentDb.saveParent(parent, new ListenerApp() {
+                        @Override
+                        public void onSuccess(Object object) {
+                            show.dismiss();
+                        }
+
+                        @Override
+                        public void onFailed(Object object) {
+                            //parent data not add to firebase
+                        }
+                    });
+
+                } else {
+                    Snackbar.make(alertDialogView,"Veuillez remplir tous les champs",Snackbar.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
 
