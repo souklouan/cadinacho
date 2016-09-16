@@ -64,7 +64,7 @@
                     style="@style/BtnBackgroungNormal"
                     android:layout_marginTop="25dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/selector_rounded_blue_green" />
+                    />
 
             </LinearLayout>
 
