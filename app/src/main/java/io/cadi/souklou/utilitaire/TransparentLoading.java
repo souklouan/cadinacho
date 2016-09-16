@@ -1,14 +1,10 @@
 package io.cadi.souklou.utilitaire;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,11 +32,6 @@ public class TransparentLoading {
     }
 
     public void addViewto(View v) {
-
-        ((ProgressBar)view.findViewById(R.id.progressLoading))
-                .getIndeterminateDrawable()
-                .setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 (LinearLayout.LayoutParams.MATCH_PARENT), (LinearLayout.LayoutParams.MATCH_PARENT));
         view.setLayoutParams(lp);
