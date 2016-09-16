@@ -13,8 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -26,13 +29,15 @@ import io.cadi.souklou.adapter.ChildrenAdapter;
 import io.cadi.souklou.database.ParentDb;
 import io.cadi.souklou.models.Parent;
 import io.cadi.souklou.utilitaire.ListenerApp;
+import io.cadi.souklou.utilitaire.TransparentLoading;
 import io.cadi.souklou.utilitaire.Utilis;
 import io.cadi.souklou.utilitaire.UtilisActivity;
 
 public class ChildrenActivity extends AppCompatActivity {
     @BindView(R.id.btnChildrenAdd) Button btnChildrenAdd;
+    @BindView(R.id.relativeChildren) RelativeLayout relativeChildren;
 
-    private ParentDb parentDb;
+    private static ParentDb parentDb;
     private UtilisActivity utilis;
     private String typeOfLogin;
 
@@ -93,13 +98,14 @@ public class ChildrenActivity extends AppCompatActivity {
         final EditText phoneNumberEdt = (EditText)alertDialogView.findViewById(R.id.phoneNumber);
         final EditText area = (EditText)alertDialogView.findViewById(R.id.area);
         final Button btnDiaInfoPar = (Button)alertDialogView.findViewById(R.id.btnDiaInfoPar);
+
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
         adb.setView(alertDialogView);
         adb.setTitle("Complètez votre profil");
         adb.setCancelable(false);
         adb.setIcon(R.drawable.ic_person_black_18dp);//TODO: change icone with the appropriate
         adb.create();
-                //.create();
+
         authInfo.setText(Utilis.getSharePreference(AppConstant.PREF_PARENT_PHONENUMBER));
         final Parent parent = new Parent();
         if (typeOfLogin.equals(Utilis.AuthType.GOOGLE.name())) {
@@ -120,6 +126,7 @@ public class ChildrenActivity extends AppCompatActivity {
         btnDiaInfoPar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnDiaInfoPar.setClickable(false);
                 if(utilis.viewInputValidator(alertDialogView)) {
                     if (typeOfLogin.equals(Utilis.AuthType.GOOGLE.name())) {
                         parent.setPhone(phoneNumberEdt.getText().toString());
@@ -134,21 +141,22 @@ public class ChildrenActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Object object) {
                             show.dismiss();
+                            //relativeChildren.removeView(layout);
                         }
 
                         @Override
                         public void onFailed(Object object) {
                             //parent data not add to firebase
+                            btnDiaInfoPar.setClickable(true);
                         }
                     });
 
                 } else {
+                    btnDiaInfoPar.setClickable(true);
                     Snackbar.make(alertDialogView,"Veuillez remplir tous les champs",Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
-
-
+    
 }

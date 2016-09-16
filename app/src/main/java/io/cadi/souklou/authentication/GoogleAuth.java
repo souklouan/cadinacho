@@ -117,7 +117,7 @@ public class GoogleAuth implements
                 new ResultCallback<Status>() {
                     @Override
                     public void onResult(@NonNull Status status) {
-                        desconnection(null);
+                        disconnection(null);
                     }
                 });
     }
@@ -130,12 +130,12 @@ public class GoogleAuth implements
                 new ResultCallback<Status>() {
                     @Override
                     public void onResult(@NonNull Status status) {
-                        desconnection(null);
+                        disconnection(null);
                     }
                 });
     }
 
-    private void desconnection(FirebaseUser user) {
+    private void disconnection(FirebaseUser user) {
         //hideProgressDialog();
         if (user != null) {
 

@@ -55,6 +55,7 @@
         style="@style/BtnBackgroungNormal"
         android:text="Valider"
         android:layout_gravity="end"
-        android:layout_marginRight="@dimen/margin_normal"/>
+        android:layout_marginRight="@dimen/margin_normal"
+        android:focusableInTouchMode="true"/>
 
     </LinearLayout>
