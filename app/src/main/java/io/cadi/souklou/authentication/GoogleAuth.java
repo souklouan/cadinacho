@@ -82,7 +82,6 @@ public class GoogleAuth implements
     // [START auth_with_google]
     public void firebaseAuthWithGoogle(GoogleSignInAccount acct, final View v) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        TransparentLoading.getInstance().addViewto(v);
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -99,7 +98,6 @@ public class GoogleAuth implements
                             Snackbar.make(v, "Connection instable : veuillez reéssayer",
                                     Snackbar.LENGTH_LONG).show();
                         }
-                        TransparentLoading.getInstance().removeView();
                     }
                 });
     }

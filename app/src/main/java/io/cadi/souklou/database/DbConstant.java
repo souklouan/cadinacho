@@ -21,4 +21,5 @@ public class DbConstant {
     public static final String TABLE_TYPEMARK = "typeMark";
     public static final String TABLE_TYPESESSION = "typeSession";
     public static final String TABLE_METACALENDAR = "metaCalendar";
+    public static final String TABLE_AREA = "area";
 }

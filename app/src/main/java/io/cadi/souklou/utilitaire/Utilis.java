@@ -62,12 +62,13 @@ public class Utilis {
     //resize out of memory image
     public static void setSharePreference(String name, String value) {
         SharedPreferences preferences = context.getSharedPreferences(AppConstant.SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
-        if (!preferences.contains(name)){
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(name, value);
-            editor.commit();
-        } else
-            Log.e("SharePreference", name+" already exist");
+        SharedPreferences.Editor editor = preferences.edit();
+        if (preferences.contains(name)){
+            editor.remove(name);
+            Log.e("SharePreference", name+" change to: "+ getSharePreference(name));
+        }
+        editor.putString(name, value);
+        editor.commit();
     }
 
 

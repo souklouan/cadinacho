@@ -23,12 +23,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.cadi.souklou.activity.ChildrenActivity;
 import io.cadi.souklou.authentication.GoogleAuth;
 import io.cadi.souklou.authentication.SmsAuth;
+import io.cadi.souklou.models.Parent;
+import io.cadi.souklou.utilitaire.TransparentLoading;
 import io.cadi.souklou.utilitaire.Utilis;
 
 
@@ -77,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
+        loginLogoImg.requestFocus();
         loginLogoImg.setImageBitmap(
                 Utilis.decodeSampledBitmapFromResource(getResources(), R.drawable.icone_simple, 500, 500));
 
@@ -109,8 +113,8 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    Log.e("signIn", "onAuthStateChanged:signed_in:" + user.getUid());
-                        authSuccess(user.getDisplayName(), Utilis.AuthType.GOOGLE);
+                    TransparentLoading.getInstance().removeView();
+                    authSuccess(user.getDisplayName(), Utilis.AuthType.GOOGLE);
                 } else {
                     // User is signed out
                     Log.e("signIn", "onAuthStateChanged:signed_out");
@@ -147,6 +151,12 @@ public class LoginActivity extends AppCompatActivity {
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
+                Parent p = new Parent();
+                p.setFirstName(account.getGivenName());
+                p.setLastName(account.getFamilyName());
+                p.setEmail(account.getEmail());
+                Utilis.setSharePreference(AppConstant.PREF_PARENT_INFO, new Gson().toJson(p));
+                TransparentLoading.getInstance().addViewto(relativeL);
                 googleAuthNew.firebaseAuthWithGoogle(account, relativeL);
             } else {
                 // Google Sign In failed, update UI appropriately
@@ -181,7 +191,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //type :  sms and google
     private void authSuccess(String str, Utilis.AuthType type) {
-        Utilis.setSharePreference(AppConstant.PREF_PARENT_PHONENUMBER, str);
+        Utilis.setSharePreference(AppConstant.PREF_PARENT_LOGIN_INFO, str);
         Utilis.setSharePreference(AppConstant.PREF_AUTH_TYPE, type.name());
         startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
         finish();

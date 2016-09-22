@@ -11,13 +11,13 @@ import io.cadi.souklou.models.School;
 /**
  * Created by arcadius on 23/08/16.
  */
-public class AutoCompletionTextFilter<T> extends Filter{
+public class AutoCompletionTextFilter extends Filter{
 
-    AutoCompletionTextAdapter<T> adapter;
-    List<T> originalList;
-    List<T> filteredList;
+    AutoCompletionTextAdapter adapter;
+    ArrayList<String> originalList;
+    ArrayList<String> filteredList;
 
-    public AutoCompletionTextFilter(AutoCompletionTextAdapter<T>  adapter, List<T> originalList) {
+    public AutoCompletionTextFilter(AutoCompletionTextAdapter  adapter, ArrayList<String> originalList) {
         super();
         this.adapter = adapter;
         this.originalList = originalList;
@@ -30,25 +30,17 @@ public class AutoCompletionTextFilter<T> extends Filter{
         final FilterResults results = new FilterResults();
 
         if (constraint == null || constraint.length() == 0) {
-            filteredList.addAll(originalList);
+            filteredList = originalList;
         } else {
             final String filterPattern = constraint.toString().toLowerCase().trim();
 
 
 
             // Your filtering logic goes in here
-            for (final T t : originalList) {
-                if (t instanceof School ){
-                    if (((School) t).getName().toLowerCase().contains(filterPattern)) {
+            for (final String t : originalList) {
+                    if (t.toLowerCase().contains(filterPattern)) {
                         filteredList.add(t);
                     }
-                }
-                if (t instanceof Classroom ){
-                    if (((Classroom) t).getName().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(t);
-                    }
-                }
-
             }
         }
         results.values = filteredList;
@@ -59,7 +51,7 @@ public class AutoCompletionTextFilter<T> extends Filter{
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
         adapter.filteredObjects.clear();
-        adapter.filteredObjects.addAll((List) results.values);
+        adapter.filteredObjects.addAll((ArrayList<String>)results.values);
         adapter.notifyDataSetChanged();
     }
 }

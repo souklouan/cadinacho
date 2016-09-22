@@ -17,12 +17,12 @@ import io.cadi.souklou.R;
 /**
  * Created by arcadius on 23/08/16.
  */
-public class AutoCompletionTextAdapter<T> extends ArrayAdapter<T> {
+public class AutoCompletionTextAdapter extends ArrayAdapter {
 
-    private final List<T> objects;
-    public List<T> filteredObjects = new ArrayList<>();
+    private final ArrayList<String> objects;
+    public ArrayList<String> filteredObjects = new ArrayList<>();
 
-    public AutoCompletionTextAdapter(Context context, int resource, List<T> objects) {
+    public AutoCompletionTextAdapter(Context context, int resource, ArrayList<String> objects) {
         super(context, resource, objects);
         this.objects = objects;
     }
@@ -34,17 +34,16 @@ public class AutoCompletionTextAdapter<T> extends ArrayAdapter<T> {
 
     @Override
     public Filter getFilter() {
-        return new AutoCompletionTextFilter<T>(this, objects);
+        return new AutoCompletionTextFilter(this, objects);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item from filtered list.
-        T object = filteredObjects.get(position);
-
+        //T object = filteredObjects.get(position);
         // Inflate your custom row layout as usual.
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        //view = inflater.inflate(R.layout.row_dog, parent, false);
+        //LayoutInflater inflater = LayoutInflater.from(getContext());
+        //View view = inflater.inflate(android.R.layout.simple_dropdown_item_1line, parent, false);
 
         return convertView;
     }

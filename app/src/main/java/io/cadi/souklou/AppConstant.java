@@ -9,11 +9,9 @@ public class AppConstant {
     //public static String
     public static final String SHARE_PREFERENCE_NAME = "cadi.io";
 
-    public static final String PREF_PARENT_PHONENUMBER = "parentNumber";
-    public static final String PREF_FAMILY_NAME = "familyName";
-    public static final String PREF_PARENT_NAME = "parentName";
-    public static final String PREF_PARENT_EMAIL = "parentEmail";
     public static final String PREF_PARENT_ID = "parentKey";
+    public static final String PREF_PARENT_LOGIN_INFO = "parentLogin";
+    public static final String PREF_PARENT_INFO = "parentInfo";
     public static final String PREF_AUTH_TYPE = "authType";
 
 }
