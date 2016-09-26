@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="160dp"
+    android:layout_width="fill_parent"
     android:layout_height="210dp"
     android:background="@color/white"
     android:layout_marginRight="@dimen/margin_normal"
@@ -57,10 +57,11 @@
         android:text="Explorer"
         android:textSize="@dimen/text_small_size"
         android:textColor="@color/white"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/linearLayout"
         android:layout_alignRight="@+id/profile_image"
-        android:layout_alignEnd="@+id/profile_image" />
+        android:layout_alignEnd="@+id/profile_image"
+        android:layout_marginBottom="15dp" />
 
 
 </RelativeLayout>
