@@ -77,8 +77,7 @@ public class ListChildFragment extends Fragment {
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-         Toolbar mToolbar = (Toolbar) view.findViewById(R.id.toolbarPrincipal);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+
 
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Mes enfants");

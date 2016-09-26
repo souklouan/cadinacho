@@ -35,15 +35,16 @@ public class ChildActivity extends AppCompatActivity
         if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
             parentDb.showParentInfoDialog();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         if (findViewById(R.id.mainframe) != null) {
             final ListChildFragment listFragment = new ListChildFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.mainframe, listFragment).commit();
         }
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarPrincipal);
+        setSupportActionBar(toolbar);
+        //getSupportActionBar().setTitle("Global Service");
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -53,6 +54,9 @@ public class ChildActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
     }
 
     @Override
