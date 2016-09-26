@@ -1,104 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:fillViewport="false">
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="-15dp">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imageChild"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:orientation="vertical"
-                android:id="@+id/loginBannerLayout"
-                android:background="@color/colorPrimary"
-                android:gravity="center_vertical">
+                android:layout_height="200dp"
+                android:src="@drawable/ic_person_black_18dp"
+                android:scaleType="centerCrop" />
 
-                <TextView
+            <com.github.clans.fab.FloatingActionMenu
+                android:id="@+id/menuLoadPicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="11dp"
+                fab:menu_animationDelayPerItem="55"
+                fab:menu_backgroundColor="@android:color/transparent"
+                fab:menu_buttonSpacing="0dp"
+                fab:menu_colorNormal="#4caf50"
+                fab:menu_colorPressed="#448AFF"
+                fab:menu_colorRipple="#99d4d4d4"
+                fab:menu_fab_size="normal"
+                fab:menu_icon="@drawable/ic_add_a_photo_black_24dp"
+                fab:menu_labels_colorNormal="#727272"
+                fab:menu_labels_colorPressed="#B6B6B6"
+                fab:menu_labels_colorRipple="#66efecec"
+                fab:menu_labels_cornerRadius="3dp"
+                fab:menu_labels_ellipsize="none"
+                fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+                fab:menu_labels_margin="0dp"
+                fab:menu_labels_maxLines="-1"
+                fab:menu_labels_padding="8dp"
+                fab:menu_labels_position="left"
+                fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+                fab:menu_labels_showShadow="true"
+                fab:menu_labels_singleLine="false"
+                fab:menu_labels_textColor="#f2f1f1"
+                fab:menu_labels_textSize="15sp"
+                fab:menu_openDirection="up"
+                fab:menu_shadowColor="#66aff198"
+                fab:menu_shadowRadius="4dp"
+                fab:menu_shadowXOffset="1dp"
+                fab:menu_shadowYOffset="4dp"
+                fab:menu_showShadow="true"
+                android:layout_marginTop="35dp">
+
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/loadPicture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ajout d'un enfant"
-                    android:textColor="@color/white"
-                    android:textSize="25sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"/>
+                    fab:menu_colorNormal="#448AFF"
+                    fab:menu_colorPressed="#4caf50"
+                    fab:menu_colorRipple="#99d4d4d4"
+                    android:src="@drawable/ic_attachment_black_24dp"
+                    fab:fab_label="Choisir une photo"
+                    fab:fab_size="mini" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_below="@+id/loginBannerLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="50dp"
-                android:gravity="center_horizontal">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/txtFirstName"
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/takePicture"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_width="@dimen/input_size"
-                    android:drawableLeft="@drawable/icone4"
-                    android:drawableStart="@drawable/icone4"
-                    android:hint="Nom"
-                    style="@style/EditText"
-                    android:layout_marginBottom="10dp"/>
-
-              <android.support.design.widget.TextInputEditText
-                  android:id="@+id/txtLastName"
-                    android:layout_height="wrap_content"
-                    android:layout_width="@dimen/input_size"
-                    android:drawableLeft="@drawable/icone4"
-                    android:drawableStart="@drawable/icone4"
-                    android:hint="Prénom"
-                    style="@style/EditText"
-                    android:layout_marginBottom="10dp"/>
-
-                <AutoCompleteTextView
-                    android:id="@+id/txtSchool"
-                    android:layout_height="wrap_content"
-                    android:layout_width="@dimen/input_size"
-                    android:drawableLeft="@drawable/icone2"
-                    android:drawableStart="@drawable/icone2"
-                    android:hint="Ecole"
-                    style="@style/EditText"
-                    android:layout_marginBottom="10dp"/>
-                <AutoCompleteTextView
-                    android:id="@+id/txtClassroom"
-                    android:layout_height="wrap_content"
-                    android:layout_width="@dimen/input_size"
-                    android:drawableLeft="@drawable/icone2"
-                    android:drawableStart="@drawable/icone2"
-                    android:hint="Classe"
-                    style="@style/EditText"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    android:minHeight="60dp"
-                    android:gravity="center_vertical"
-                    android:paddingRight="@dimen/padding_normal"
-                    android:paddingLeft="@dimen/padding_normal"
-                    android:text="Nous verifirons ces informations afin de valider votre inscription en moin de  24h"
-                    android:background="@color/background"
-                    android:textSize="@dimen/text_medium_size"
-                    android:textColor="@color/colorSecondary_text"/>
-
-                <Button
-                    android:id="@+id/btnRegisterChild"
-                    android:text="@string/registerBtn"
-                    style="@style/BtnBackgroungBig"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="12dp"
-                    />
+                    fab:menu_colorNormal="#448AFF"
+                    fab:menu_colorPressed="#4caf50"
+                    fab:menu_colorRipple="#99d4d4d4"
+                    android:src="@drawable/ic_camera_alt_black_24dp"
+                    fab:fab_label="Prendre une photo"
+                    fab:fab_size="mini" />
 
 
-            </LinearLayout>
+            </com.github.clans.fab.FloatingActionMenu>
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_below="@+id/loginBannerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
             <CheckBox
                 android:id="@+id/checkBox"
@@ -109,8 +109,77 @@
                 android:layout_below="@+id/loginBannerLayout"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:checked="true"/>
-        </RelativeLayout>
-    </ScrollView>
+                android:checked="true"
+                android:layout_marginTop="-10dp" />
 
-</RelativeLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/txtFirstName"
+                android:layout_height="wrap_content"
+                android:layout_width="@dimen/input_size"
+                android:drawableLeft="@drawable/icone4"
+                android:drawableStart="@drawable/icone4"
+                android:hint="Nom"
+                style="@style/EditText"
+                android:layout_marginBottom="10dp"/>
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/txtLastName"
+                android:layout_height="wrap_content"
+                android:layout_width="@dimen/input_size"
+                android:drawableLeft="@drawable/icone4"
+                android:drawableStart="@drawable/icone4"
+                android:hint="Prénom"
+                style="@style/EditText"
+                android:layout_marginBottom="10dp"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/txtSchool"
+                android:layout_height="wrap_content"
+                android:layout_width="@dimen/input_size"
+                android:drawableLeft="@drawable/icone2"
+                android:drawableStart="@drawable/icone2"
+                android:hint="Ecole"
+                style="@style/EditText"
+                android:layout_marginBottom="10dp"/>
+            <AutoCompleteTextView
+                android:id="@+id/txtClassroom"
+                android:layout_height="wrap_content"
+                android:layout_width="@dimen/input_size"
+                android:drawableLeft="@drawable/icone2"
+                android:drawableStart="@drawable/icone2"
+                android:hint="Classe"
+                style="@style/EditText"
+                android:layout_marginBottom="@dimen/padding_normal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:minHeight="60dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingRight="@dimen/padding_normal"
+                android:paddingLeft="@dimen/padding_normal"
+                android:paddingTop="@dimen/padding_normal"
+                android:paddingBottom="@dimen/padding_normal"
+                android:text="Nous verifirons ces informations afin de valider l'enregistrement de votre enfant en moins de  24h"
+                android:background="@color/bg_quite_well"
+                android:textSize="@dimen/text_medium_size"
+                android:textColor="@color/colorSecondary_text"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_normal" />
+
+            <Button
+                android:id="@+id/btnRegisterChild"
+                android:text="@string/addBtn"
+                style="@style/BtnBackgroungNormal"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/selector_rounded_blue_green" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

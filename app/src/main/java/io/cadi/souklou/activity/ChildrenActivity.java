@@ -58,12 +58,12 @@ public class ChildrenActivity extends AppCompatActivity {
         initListViews();
         ButterKnife.bind(this);
 
-        parentDb = new ParentDb(this);
-        utilis = new UtilisActivity(this);
+        //parentDb = new ParentDb(this);
+        //utilis = new UtilisActivity(this);
 
         //PREF_PARENT_ID set in ParentDb.java
-        if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
-            parentDb.showParentInfoDialog();
+        //if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
+        // parentDb.showParentInfoDialog();
 
         btnChildrenAdd.setOnClickListener(new View.OnClickListener() {
             @Override

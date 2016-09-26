@@ -12,7 +12,7 @@ import io.cadi.souklou.database.ListenerDb;
  */
 public class UtilisDb {
 
-    public void newRefChildKey(DatabaseReference ref, final String prefix, final ListenerDb callback) {
+    public static void newRefChildKey(DatabaseReference ref, final String prefix, final ListenerDb callback) {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

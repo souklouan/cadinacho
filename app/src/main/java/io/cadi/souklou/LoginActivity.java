@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.cadi.souklou.activity.ChildrenActivity;
+import io.cadi.souklou.activity.ChildActivity;
 import io.cadi.souklou.authentication.GoogleAuth;
 import io.cadi.souklou.authentication.SmsAuth;
 import io.cadi.souklou.models.Parent;
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if(Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) != null) {
-            startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
+            startActivity(new Intent(LoginActivity.this, ChildActivity.class));
             finish();
         }
 
@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if(Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) != null) {
-            startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
+            startActivity(new Intent(LoginActivity.this, ChildActivity.class));
             finish();
         }
     }
@@ -193,7 +193,7 @@ public class LoginActivity extends AppCompatActivity {
     private void authSuccess(String str, Utilis.AuthType type) {
         Utilis.setSharePreference(AppConstant.PREF_PARENT_LOGIN_INFO, str);
         Utilis.setSharePreference(AppConstant.PREF_AUTH_TYPE, type.name());
-        startActivity(new Intent(LoginActivity.this, ChildrenActivity.class));
+        startActivity(new Intent(LoginActivity.this, ChildActivity.class));
         finish();
     }
 

@@ -33,6 +33,7 @@ import java.util.Map;
 
 import io.cadi.souklou.AppConstant;
 import io.cadi.souklou.R;
+import io.cadi.souklou.activity.ChildActivity;
 import io.cadi.souklou.activity.ChildrenActivity;
 import io.cadi.souklou.models.Area;
 import io.cadi.souklou.models.Parent;
@@ -49,10 +50,10 @@ public class ParentDb extends UtilisDb {
     private DatabaseReference refRoot = DbConstant.FIREBASE_DB;
     private DatabaseReference refParent = refRoot.child(DbConstant.TABLE_PARENT);
     private AlertDialog show;
-    private ChildrenActivity context;
+    private ChildActivity context;
     private UtilisActivity utilis;
 
-    public ParentDb(ChildrenActivity context) {
+    public ParentDb(ChildActivity context) {
         super();
         this.context = context;
         utilis = new UtilisActivity(context);
@@ -151,13 +152,13 @@ public class ParentDb extends UtilisDb {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
-                        String phoneNumber = data.getValue(Parent.class).getPhone();
-                        if (phoneNumber.equals(number)) {
-                            Parent p = data.getValue(Parent.class);
-                            p.setId(data.getKey());
-                            callback.onSuccess(p);
-                           return;//stop search
-                        }
+                    String phoneNumber = data.getValue(Parent.class).getPhone();
+                    if (phoneNumber.equals(number)) {
+                        Parent p = data.getValue(Parent.class);
+                        p.setId(data.getKey());
+                        callback.onSuccess(p);
+                        return;//stop search
+                    }
                 }
                 callback.onSuccess(false);//number not find
             }

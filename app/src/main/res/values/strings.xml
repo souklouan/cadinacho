@@ -19,4 +19,9 @@
     <string name="registerBtn">s\'inscrire</string>
     <string name="add_child_execpt">Veille sur l\'enfant dès maintenant: Ton avenir est là</string>
     <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="addBtn">Enregistrer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

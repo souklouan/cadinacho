@@ -38,19 +38,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ChildrenActivity"/>
-
-        <activity android:name=".activity.PreviewChildActivity"
-            android:label="Arcadius"/>
-        <activity android:name=".activity.ReportMarkActivity"
-            android:label="Notes"/>
-        <activity android:name=".activity.ReportActivity"
-            android:label="Bullletin"/>
-        <activity android:name=".activity.RegisteredChildActivity"
+        <activity android:name=".activity.ChildActivity"
+            android:configChanges="orientation"
+            android:label="Mes enfants"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.PreviewChildActivity"
+            android:label="Arcadius" />
+        <activity
+            android:name=".activity.ReportMarkActivity"
+            android:label="Notes" />
+        <activity
+            android:name=".activity.ReportActivity"
+            android:label="Bullletin" />
+        <activity
+            android:name=".activity.RegisteredChildActivity"
             android:label="Ajout"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".activity.CalendarActivity"
             android:label="Calendrier Scolaire"
             android:theme="@style/AppTheme.NoActionBar"/>
