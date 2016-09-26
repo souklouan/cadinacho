@@ -233,7 +233,7 @@ public class ParentDb extends UtilisDb {
                         @Override
                         public void onSuccess(Object object) {
                             show.dismiss();
-                            v.getContext().startActivity(new Intent(context, ChildrenActivity.class));
+                            v.getContext().startActivity(new Intent(context, ChildActivity.class));
                             Utilis.setSharePreference(AppConstant.PREF_PARENT_INFO, new Gson().toJson(object));
                             context.finish();
                         }
