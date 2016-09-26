@@ -4,6 +4,8 @@ package io.cadi.souklou.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -63,7 +65,7 @@ public class ListChildFragment extends Fragment {
         //ButterKnife.bind((AppCompatActivity)getActivity());
 
        parentDb = new ParentDb(childActivity);
-        Button btnChildrenAdd = (Button)view.findViewById(R.id.btnChildrenAdd);
+       /* Button btnChildrenAdd = (Button)view.findViewById(R.id.btnChildrenAdd);
 
 
            btnChildrenAdd.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +73,15 @@ public class ListChildFragment extends Fragment {
            public void onClick(View view) {
                 startActivity(new Intent(view.getContext(), RegisteredChildActivity.class));
             }});
+        */
+
+        FloatingActionButton fabChildrenAdd = (FloatingActionButton)view.findViewById(R.id.fabChildrenAdd);
+        fabChildrenAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), RegisteredChildActivity.class));
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout)((AppCompatActivity)getActivity()).findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle((AppCompatActivity)getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

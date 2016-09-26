@@ -43,7 +43,7 @@ import io.cadi.souklou.utilitaire.Utilis;
 import io.cadi.souklou.utilitaire.UtilisActivity;
 
 public class ChildrenActivity extends AppCompatActivity {
-    @BindView(R.id.btnChildrenAdd) Button btnChildrenAdd;
+    //@BindView(R.id.btnChildrenAdd) Button btnChildrenAdd;
     @BindView(R.id.relativeChildren) RelativeLayout relativeChildren;
 
     private static ParentDb parentDb;
@@ -65,12 +65,12 @@ public class ChildrenActivity extends AppCompatActivity {
         //if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
         // parentDb.showParentInfoDialog();
 
-        btnChildrenAdd.setOnClickListener(new View.OnClickListener() {
+     /*   btnChildrenAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ChildrenActivity.this, RegisteredChildActivity.class));
             }
-        });
+        });*/
 
     }
 

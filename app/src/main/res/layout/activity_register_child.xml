@@ -162,7 +162,7 @@
                 android:paddingTop="@dimen/padding_normal"
                 android:paddingBottom="@dimen/padding_normal"
                 android:text="Nous verifirons ces informations afin de valider l'enregistrement de votre enfant en moins de  24h"
-                android:background="@color/bg_quite_well"
+                android:background="@color/colorPrimary_light"
                 android:textSize="@dimen/text_medium_size"
                 android:textColor="@color/colorSecondary_text"
                 android:layout_marginRight="@dimen/margin_normal"
