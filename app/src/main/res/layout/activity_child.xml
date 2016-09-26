@@ -20,6 +20,33 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_child"
-        app:menu="@menu/activity_child_drawer"/>
+        app:menu="@menu/activity_child_drawer">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/taille_img_pub"
+            android:id="@+id/imagePub"
+            android:src="@mipmap/background_header_drawer"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/textPub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Votre pub ici"
+            android:padding="@dimen/padding_normal"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/abc_text_size_small_material" />
+    </LinearLayout>
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
