@@ -13,18 +13,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import io.cadi.souklou.AppConstant;
 import io.cadi.souklou.R;
+import io.cadi.souklou.database.ParentDb;
 import io.cadi.souklou.fragment.ListChildFragment;
+import io.cadi.souklou.utilitaire.Utilis;
+import io.cadi.souklou.utilitaire.UtilisActivity;
 
 public class ChildActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private static ParentDb parentDb;
+    private UtilisActivity utilis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child);
+        utilis = new UtilisActivity(this);
+        parentDb = new ParentDb(this);
+
+        //PREF_PARENT_ID set in ParentDb.java
+        if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
+            parentDb.showParentInfoDialog();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         if (findViewById(R.id.mainframe) != null) {
             final ListChildFragment listFragment = new ListChildFragment();

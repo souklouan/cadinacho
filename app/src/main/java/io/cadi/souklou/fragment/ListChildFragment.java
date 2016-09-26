@@ -36,8 +36,8 @@ import io.cadi.souklou.utilitaire.UtilisActivity;
  */
 public class ListChildFragment extends Fragment {
 
-    @BindView(R.id.btnChildrenAdd)
-    Button btnChildrenAdd;
+    //@BindView(R.id.btnChildrenAdd)
+
 
     private ParentDb parentDb;
     private UtilisActivity utilis;
@@ -58,16 +58,13 @@ public class ListChildFragment extends Fragment {
         Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbarPrincipal);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
-        ButterKnife.bind((AppCompatActivity)getActivity());
+        //ButterKnife.bind((AppCompatActivity)getActivity());
         initListViews(view);
-        ButterKnife.bind((AppCompatActivity)getActivity());
+        //ButterKnife.bind((AppCompatActivity)getActivity());
 
        parentDb = new ParentDb(childActivity);
-        utilis = new UtilisActivity((AppCompatActivity)getActivity());
+        Button btnChildrenAdd = (Button)view.findViewById(R.id.btnChildrenAdd);
 
-        //PREF_PARENT_ID set in ParentDb.java
-        if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
-            parentDb.showParentInfoDialog();
 
            btnChildrenAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,9 +106,9 @@ public class ListChildFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null) {
-            parentDb.showParentInfoDialog();
-        }
+        //if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null) {
+            //parentDb.showParentInfoDialog();
+        //}
     }
 
     private void initListViews(View rootView){
