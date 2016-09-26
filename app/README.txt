@@ -7,11 +7,11 @@
 
 * Authentification google (LoginActivity) TERMINER --Arcadius
 * Faire fonctionner entierement la connexion TERMINER --Arcadius
-* Terminer le module d'ajout d'un enfant (ChildrenActivity et RegisteredChildActivity) EN COURS -- Narech
-* Enregistrer l'image de l'enfant avec le module "STOCKAGE" de firebase (RegisteredChildActivity)
-* Changer le background des button "BLEU" au click (main_btn_backgroung.xml)EN COURS -- Narech
-* Appliquer le background sur les NOTES (PreviewChildActivity et ReportMarkActivity)EN COURS -- Narech
+* Terminer le module d'ajout d'un enfant (ChildrenActivity et RegisteredChildActivity) TERMINER -- Narech
+* Enregistrer l'image de l'enfant avec le module "STOCKAGE" de firebase (RegisteredChildActivity) TERMINER -- Narech
+* Changer le background des button "BLEU" au click (main_btn_backgroung.xml) TERMINER -- Narech
+* Appliquer le background sur les NOTES (PreviewChildActivity et ReportMarkActivity) TERMINER -- Narech
 * Enlever la fleche (haut ou bas) sur le bloc des NOTES (PreviewChildActivity)
-* Implementer le calendrier (CalendarActivity)
-* Implementer l'appel de l'ecole (PreviewChildActivity)
-* Implementer le drawer et prevoir egament la pub dans le drawer EN COURS -- Narech
+* Implementer le calendrier (CalendarActivity) EN COURS -- Narech
+* Implementer l'appel de l'ecole (PreviewChildActivity) EN COURS -- Narech
+* Implementer le drawer et prevoir egament la pub dans le drawer TERMINER -- Narech
