@@ -94,6 +94,7 @@
 
 
         <LinearLayout
+            android:id="@+id/linearRegisterChild"
             android:layout_below="@+id/loginBannerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -106,14 +107,10 @@
                 android:layout_height="wrap_content"
                 android:text="Recevoir les notifications"
                 android:textColor="@color/colorSecondary_text"
-                android:layout_below="@+id/loginBannerLayout"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:checked="true"
-                android:layout_marginTop="-10dp" />
+                android:checked="true" />
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/txtFirstName"
+                android:id="@+id/txtLastName"
                 android:layout_height="wrap_content"
                 android:layout_width="@dimen/input_size"
                 android:drawableLeft="@drawable/icone4"
@@ -123,7 +120,7 @@
                 android:layout_marginBottom="10dp"/>
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/txtLastName"
+                android:id="@+id/txtFirstName"
                 android:layout_height="wrap_content"
                 android:layout_width="@dimen/input_size"
                 android:drawableLeft="@drawable/icone4"
@@ -136,6 +133,7 @@
                 android:id="@+id/txtSchool"
                 android:layout_height="wrap_content"
                 android:layout_width="@dimen/input_size"
+                android:completionThreshold="1"
                 android:drawableLeft="@drawable/icone2"
                 android:drawableStart="@drawable/icone2"
                 android:hint="Ecole"
@@ -148,6 +146,7 @@
                 android:drawableLeft="@drawable/icone2"
                 android:drawableStart="@drawable/icone2"
                 android:hint="Classe"
+                android:completionThreshold="1"
                 style="@style/EditText"
                 android:layout_marginBottom="@dimen/padding_normal" />
 

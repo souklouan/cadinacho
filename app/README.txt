@@ -16,12 +16,14 @@
 * Implementer le calendrier (CalendarActivity) EN COURS -- Narech
 * Implementer l'appel de l'ecole (PreviewChildActivity) EN COURS -- Narech
 
-* Fermer le floatButton automatiquement apres le choix de l'image(RegisterChild)
-* Précharger le NOM de Famille automatiquement mais avec la possiblité de changer(RegisterChild)
-* Implémenter le autocompletion sur le champs ecole et classe(RegisterChild)
-* Controle des champs vide (RegisterChild)
-* Ne plus mettre les info du child dans le noeud CHILDREN/CHILDREN de la base mais dans CHILDREN (RegisterChild)
-* Au click du button enregister de (RegisterChild) charger les informations dans la liste des enfants (ChildrenActivity)
-  avec un background rouge sur le button "explorer" un fois l'info enregistrer en base passer le background a vert
-* Enlever la fleche (haut ou bas) sur le bloc des NOTES (PreviewChildActivity)
+* Fermer le floatButton automatiquement apres le choix de l'image(RegisterChild) TERMINER -- Arcadius
+* Précharger le NOM de Famille automatiquement mais avec la possiblité de changer(RegisterChild) TERMINER -- Arcadius
+* Implémenter le autocompletion sur le champs ecole et classe(RegisterChild) TERMINER -- Arcadius
+* Controle des champs vide (RegisterChild) TERMINER -- Arcadius
+* Ne plus mettre les info du child dans le noeud CHILDREN/CHILDREN de la base mais dans CHILDREN (RegisterChild) TERMINER -- Arcadius
+* Au click du button enregister de (RegisterChild) charger les informations dans la liste des enfants (ChildrenActivity) TERMINER -- Arcadius
+* Enlever la fleche (haut ou bas) sur le bloc des NOTES (PreviewChildActivity) TERMINER -- Arcadius
 * Implémenter les notes d'un eleve
+
+
+*Ameliorer autocompletion sur les champs classe et ecole

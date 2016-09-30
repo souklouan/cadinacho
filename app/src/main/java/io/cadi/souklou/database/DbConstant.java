@@ -2,11 +2,16 @@ package io.cadi.souklou.database;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 /**
  * Created by arcadius on 23/08/16.
  */
 public class DbConstant {
+
+    public static final StorageReference FIREBASE_STORAGE = FirebaseStorage.getInstance().getReferenceFromUrl("gs://souklou-15ea7.appspot.com");
+    public static final StorageReference FIREBASE_STORAGE_CHILD = FIREBASE_STORAGE.child("souklou_images/Child");
 
     //All constant is static and write in uppercase
     //Be careful TABLE is referring a reference in firebase case

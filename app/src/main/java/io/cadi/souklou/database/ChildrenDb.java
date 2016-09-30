@@ -1,10 +1,12 @@
 package io.cadi.souklou.database;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,12 +29,14 @@ import io.cadi.souklou.utilitaire.UtilisDb;
  */
 public class ChildrenDb extends UtilisDb {
 
+    private static Context context;
     private static DatabaseReference refRoot = DbConstant.FIREBASE_DB;
     private static String parentKey = Utilis.getSharePreference(AppConstant.PREF_PARENT_ID);
     //table des enfants
     private static DatabaseReference refChildren = refRoot.child(DbConstant.TABLE_PARENT+"/"+parentKey+"/"+DbConstant.TABLE_CHILDREN);
 
-    public ChildrenDb() {
+    public ChildrenDb(Context context) {
+        this.context = context;
     }
 
     private static  void generateNewKey(final ListenerDb callback) {
@@ -43,22 +47,24 @@ public class ChildrenDb extends UtilisDb {
      *
      * @param callback call when in error case
      */
-    public void addNewChildren(final Children children, final ListenerDb callback) {
+    public void addNewChildren(final ImageView imageChild, final Children children, final ListenerDb callback) {
         generateNewKey(new ListenerDb() {
             @Override
             public void onSuccess(Object o) {
                 final String key = (String) o;
                 DatabaseReference newChild = refChildren.child(key);
-                newChild.child(DbConstant.TABLE_CHILDREN).setValue(children, new DatabaseReference.CompletionListener() {
+                final String imagetitle = parentKey+key+".jpg";
+                children.setImageTitle(imagetitle);
+                newChild.setValue(children, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                         if (databaseError != null)
                             callback.onFailed(databaseError);
                         else {
                             children.setKey(key);
+                            addPictureChildren(imagetitle, imageChild);
                             callback.onSuccess(children);
                         }
-
                     }
                 });
             }
@@ -72,21 +78,8 @@ public class ChildrenDb extends UtilisDb {
 
     }
 
-
-    public static void addPictureChildren(final ImageView imageChild, final ListenerDb callback) {
-        generateNewKey(new ListenerDb() {
-            @Override
-            public void onSuccess(Object o) {
-                final String key = (String) o;
-                FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference storageRef = storage.getReferenceFromUrl("gs://souklou-15ea7.appspot.com");
-
-                StorageReference mountainsRef = storageRef.child("souklou_images/Child/"+key+".jpg");
-
-                StorageReference mountainImagesRef = storageRef.child("souklou_images/Child/"+key+".jpg");
-
-                mountainsRef.getName().equals(mountainImagesRef.getName());
-                mountainsRef.getPath().equals(mountainImagesRef.getPath());
+    private void addPictureChildren(String key, final ImageView imageChild) {
+                StorageReference mountainsRef = DbConstant.FIREBASE_STORAGE_CHILD.child(key);
 
                 imageChild.setDrawingCacheEnabled(true);
                 imageChild.buildDrawingCache();
@@ -101,6 +94,7 @@ public class ChildrenDb extends UtilisDb {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         Log.e("voir back", exception.getMessage());
+                        Toast.makeText(context,"Image non téléchargée ",Toast.LENGTH_LONG).show();
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -109,15 +103,6 @@ public class ChildrenDb extends UtilisDb {
                         Uri downloadUrl = taskSnapshot.getDownloadUrl();
                     }
                 });
-
-            }
-
-            @Override
-            public void onFailed(Object o) {
-
-            }
-        });
-
 
     }
 }

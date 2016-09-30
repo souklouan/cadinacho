@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -58,6 +59,7 @@ public class PreviewChildAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Log.e("create view", String.valueOf(viewType));
         if (viewType == TYPE_HEADER) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.report_hearder, parent, false);
+            (view.findViewById(R.id.imgReportHeaderArrow)).setVisibility(View.GONE);//dont need here
             return new ReportHeaderHolder(view);
         }else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.report_normal_row, parent, false);

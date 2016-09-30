@@ -5,7 +5,15 @@ package io.cadi.souklou.models;
  */
 public class Children {
 
-    String key, firstName, lastName, school, classroom, created, idParent, birthDay;
+    String key, firstName, lastName, school, classroom, created, idParent, birthDay, imageTitle;
+
+    public String getImageTitle() {
+        return imageTitle;
+    }
+
+    public void setImageTitle(String imageTitle) {
+        this.imageTitle = imageTitle;
+    }
 
     public String getBirthDay() {
         return birthDay;

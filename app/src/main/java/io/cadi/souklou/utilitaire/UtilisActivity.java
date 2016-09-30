@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 /**
@@ -25,7 +26,7 @@ public class UtilisActivity {
         transaction.commit();
     }
 
-    public boolean viewInputValidator(View v) {
+    public static boolean viewInputValidator(View v) {
         if (!(v instanceof ViewGroup)) {
             Log.e("viewInputValidator", "can not chech the input");
             return false;

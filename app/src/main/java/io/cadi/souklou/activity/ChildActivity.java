@@ -43,8 +43,6 @@ public class ChildActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarPrincipal);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("Global Service");
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -110,5 +108,12 @@ public class ChildActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Utilis.getSharePreference(AppConstant.PREF_PARENT_ID) == null)
+            parentDb.showParentInfoDialog();
     }
 }

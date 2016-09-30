@@ -34,7 +34,6 @@ import java.util.Map;
 import io.cadi.souklou.AppConstant;
 import io.cadi.souklou.R;
 import io.cadi.souklou.activity.ChildActivity;
-import io.cadi.souklou.activity.ChildrenActivity;
 import io.cadi.souklou.models.Area;
 import io.cadi.souklou.models.Parent;
 import io.cadi.souklou.utilitaire.ListenerApp;
@@ -281,6 +280,7 @@ public class ParentDb extends UtilisDb {
                 textView.setAdapter(new ArrayAdapter<>(context,
                         android.R.layout.simple_list_item_1, listArea.toArray()));
                 textView.setDropDownHeight(230);
+                textView.showDropDown();
             }
 
             @Override
@@ -288,7 +288,6 @@ public class ParentDb extends UtilisDb {
 
             }
         });
-
     }
 
 }

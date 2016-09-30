@@ -35,6 +35,16 @@
         android:layout_height="match_parent"
         android:background="@color/background">
 
+        <ProgressBar
+            android:id="@+id/progressLoadingChildren"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:indeterminate="true"
+            android:indeterminateBehavior="repeat"
+            android:keepScreenOn="true"
+            android:layout_centerInParent="true"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_marginRight="70dp"/>
 
 
         <android.support.v7.widget.RecyclerView
@@ -48,6 +58,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/linearAddChild"
             android:layout_width="match_parent"
             android:layout_height="90dp"
@@ -62,17 +73,9 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical"
                 android:layout_weight="0.9"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginRight="70dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ajouter un enfant"
-                    android:textColor="@color/colorPrimary_text"
-                    android:textSize="@dimen/text_normal_size"
-                    android:layout_marginBottom="4dp"
-                    android:layout_gravity="center_horizontal" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,7 +83,7 @@
                     android:textSize="@dimen/text_small_size"
                     android:textColor="@color/colorSecondary_text"
                     android:layout_gravity="center_horizontal"
-                    android:textAlignment="center" />
+                    />
             </LinearLayout>
 
 

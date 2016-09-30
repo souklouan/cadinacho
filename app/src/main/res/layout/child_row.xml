@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
+        android:id="@+id/imgStar"
         android:src="@drawable/ic_stars_black_24dp"
         android:clickable="true"
         android:layout_gravity="left"
@@ -19,7 +19,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="@dimen/margin_normal"
-    android:id="@+id/profile_image"
+    android:id="@+id/imgPreviewChild"
     android:layout_width="96dp"
     android:layout_height="96dp"
     app:civ_border_width="1dp"
@@ -33,16 +33,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_below="@+id/profile_image"
+        android:layout_below="@+id/imgPreviewChild"
         android:id="@+id/linearLayout"
         android:layout_marginTop="@dimen/margin_normal">
         <TextView
+            android:id="@+id/txtNameChild"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAllCaps="true"
             android:text="ARCADIUS"
             android:textSize="@dimen/text_normal_size"
             />
         <TextView
+            android:id="@+id/txtSchoolChild"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cs.St Félicité"
@@ -52,16 +55,16 @@
     <Button
         android:id="@+id/btnChildRow"
         android:layout_width="90dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:background="@color/colorPrimary"
         android:text="Explorer"
         android:textSize="@dimen/text_small_size"
         android:textColor="@color/white"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/linearLayout"
-        android:layout_alignRight="@+id/profile_image"
-        android:layout_alignEnd="@+id/profile_image"
-        android:layout_marginBottom="15dp" />
+        android:layout_alignRight="@+id/imgPreviewChild"
+        android:layout_alignEnd="@+id/imgPreviewChild"
+        android:layout_marginBottom="10dp" />
 
 
 </RelativeLayout>
