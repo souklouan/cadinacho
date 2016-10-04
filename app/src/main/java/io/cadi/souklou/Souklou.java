@@ -6,6 +6,7 @@ import android.os.StrictMode;
 
 //import com.facebook.FacebookSdk;
 import com.facebook.accountkit.AccountKit;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by arcadius on 08/08/16.
@@ -17,6 +18,7 @@ public class Souklou extends Application {
         super.onCreate();
 
         AppContext.getInstance().initialize(this);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             enableStrictMode();

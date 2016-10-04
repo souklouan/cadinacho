@@ -65,7 +65,7 @@ public class Utilis {
         SharedPreferences.Editor editor = preferences.edit();
         if (preferences.contains(name)){
             editor.remove(name);
-            Log.e("SharePreference", name+" change to: "+ getSharePreference(name));
+            Log.e("SharePreference", name+" change to: "+ value);
         }
         editor.putString(name, value);
         editor.commit();
@@ -85,4 +85,43 @@ public class Utilis {
     }
 
     public enum AuthType {GOOGLE, SMS}
+
+
+
+
+    /*private void addInJSONArray(Product productToAdd){
+
+        Gson gson = new Gson();
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFS_TAG, Context.MODE_PRIVATE);
+
+        String jsonSaved = sharedPref.getString(PRODUCT_TAG, "");
+        String jsonNewproductToAdd = gson.toJson(productToAdd);
+
+        JSONArray jsonArrayProduct= new JSONArray();
+
+        try {
+            if(jsonSaved.length()!=0){
+                jsonArrayProduct = new JSONArray(jsonSaved);
+            }
+            jsonArrayProduct.put(new JSONObject(jsonNewproductToAdd));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//SAVE NEW ARRAY
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(PRODUCT_TAG, jsonArrayProduct);
+        editor.commit(); }
+
+    private List<Product> getDataFromSharedPreferences(){
+        Gson gson = new Gson();
+        List<Product> productFromShared = new ArrayList<>();
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFS_TAG, Context.MODE_PRIVATE);
+        String jsonPreferences = sharedPref.getString(PRODUCT_TAG, "");
+
+        Type type = new TypeToken<List<Product>>() {}.getType();
+        productFromShared = gson.fromJson(jsonPreferences, type);
+
+        return preferences;
+    }*/
 }

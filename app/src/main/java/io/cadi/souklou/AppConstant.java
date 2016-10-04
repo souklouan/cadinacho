@@ -14,4 +14,8 @@ public class AppConstant {
     public static final String PREF_PARENT_INFO = "parentInfo";
     public static final String PREF_AUTH_TYPE = "authType";
 
+    public static final String PREF_CHILD_LIST = "childActive";//use to stock list of child before fetch on Db
+    public static final String PREF_CHILD_ACTIVE = "childActive";
+
+
 }

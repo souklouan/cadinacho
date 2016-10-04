@@ -23,7 +23,8 @@
 * Ne plus mettre les info du child dans le noeud CHILDREN/CHILDREN de la base mais dans CHILDREN (RegisterChild) TERMINER -- Arcadius
 * Au click du button enregister de (RegisterChild) charger les informations dans la liste des enfants (ChildrenActivity) TERMINER -- Arcadius
 * Enlever la fleche (haut ou bas) sur le bloc des NOTES (PreviewChildActivity) TERMINER -- Arcadius
-* Implémenter les notes d'un eleve
+* Implémenter les notes d'un eleve EN COURS -- Arcadius
 
 
-*Ameliorer autocompletion sur les champs classe et ecole
+* Ameliorer autocompletion sur les champs classe et ecole
+* Enregistrer l'ecole , le quartier qui n'existe pas dans l'autocompletion mais renseigner par l'utilisateur

@@ -18,17 +18,20 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.cadi.souklou.AppConstant;
 import io.cadi.souklou.R;
 import io.cadi.souklou.activity.PreviewChildActivity;
 import io.cadi.souklou.database.DbConstant;
 import io.cadi.souklou.database.ListenerDb;
 import io.cadi.souklou.models.Children;
+import io.cadi.souklou.utilitaire.Utilis;
 
 /**
  * Created by arcadius on 09/08/16.
@@ -52,7 +55,7 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Children children = listChildren.get(position);
+        final Children children = listChildren.get(position);
 
         holder.txtName.setText(children.getFirstName());
         holder.txtSchool.setText(children.getSchool());
@@ -73,6 +76,7 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.ViewHo
         holder.btnChildRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utilis.setSharePreference(AppConstant.PREF_CHILD_ACTIVE, new Gson().toJson(children));
                 context.startActivity(new Intent(context, PreviewChildActivity.class));
             }
         });

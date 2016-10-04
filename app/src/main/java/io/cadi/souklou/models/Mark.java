@@ -5,14 +5,15 @@ package io.cadi.souklou.models;
  */
 public class Mark {
 
-    private String id, subject, typeMark, typeSession, idChildren, date, mark;
+    private String key, subject, created;
+    private Long mark;
 
-    public String getId() {
-        return id;
+    public String getKey() {
+        return key;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getSubject() {
@@ -23,43 +24,19 @@ public class Mark {
         this.subject = subject;
     }
 
-    public String getTypeMark() {
-        return typeMark;
+    public String getCreated() {
+        return created;
     }
 
-    public void setTypeMark(String typeMark) {
-        this.typeMark = typeMark;
+    public void setCreated(String date) {
+        this.created = date;
     }
 
-    public String getTypeSession() {
-        return typeSession;
-    }
-
-    public void setTypeSession(String typeSession) {
-        this.typeSession = typeSession;
-    }
-
-    public String getIdChildren() {
-        return idChildren;
-    }
-
-    public void setIdChildren(String idChildren) {
-        this.idChildren = idChildren;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getMark() {
+    public Long getMark() {
         return mark;
     }
 
-    public void setMark(String mark) {
+    public void setMark(Long mark) {
         this.mark = mark;
     }
 }
